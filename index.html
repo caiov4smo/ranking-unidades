@@ -9,14 +9,13 @@
     <style>
         :root {
             --bg-color: #0a0a0a;
-            --panel-bg: #141414;
-            --card-bg: #1c1c1c;
+            --panel-bg: #111111;
+            --card-bg: #161616;
             --text-main: #ffffff;
-            --text-muted: #8c8c8c;
+            --text-muted: #888888;
             --v4-red: #E50914;
-            --v4-red-dark: #80050b;
             --v4-red-glow: rgba(229, 9, 20, 0.4);
-            --bar-bg: #2a2a2a;
+            --green-bright: #00E676;
             --gold: #FFD700;
             --silver: #E0E0E0;
             --bronze: #CD7F32;
@@ -38,34 +37,20 @@
             overflow: hidden;
         }
 
-        /* HEADER V4 STYLE */
+        /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 3rem;
-            background: #0d0d0d;
+            padding: 1rem 2.5rem;
+            background: #000000;
             border-bottom: 2px solid var(--v4-red);
-            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.15);
         }
 
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .v4-logo {
-            height: 45px;
-            width: auto;
-            border-radius: 4px;
-            object-fit: contain;
-        }
-
-        .header-title h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #ffffff;
+        .header-brand h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--v4-red);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -73,26 +58,19 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .v4-select {
             background-color: #1a1a1a;
             color: #ffffff;
             border: 1px solid var(--v4-red);
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
             font-weight: 600;
             outline: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(229, 9, 20, 0.1);
-        }
-
-        .v4-select:focus, .v4-select:hover {
-            box-shadow: 0 0 12px var(--v4-red-glow);
-            border-color: #ff1a26;
         }
 
         .header-month {
@@ -103,201 +81,289 @@
             letter-spacing: 1px;
         }
 
+        .v4-logo-right {
+            height: 42px;
+            width: 42px;
+            object-fit: contain;
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 2.5rem;
+            overflow-y: auto;
+            gap: 1.5rem;
+        }
+
+        .main-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .main-container::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        .main-container::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+
         /* PÓDIO TOP 3 */
         .podium-section {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            padding: 1.5rem 0;
             gap: 1.5rem;
-            min-height: 240px;
+            padding-top: 1rem;
+            min-height: 270px;
         }
 
         .podium-card {
             background: var(--panel-bg);
-            border-radius: 8px 8px 0 0;
-            padding: 1.2rem;
+            border-radius: 6px;
+            padding: 1.5rem 1.2rem 1.2rem 1.2rem;
             text-align: center;
-            width: 300px;
-            box-shadow: 0 -8px 25px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-bottom: none;
+            width: 320px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #222;
         }
 
-        .podium-card::before {
-            content: '';
+        /* CARD PLACEMENT SPECIFICS */
+        .podium-card.rank-1 {
+            min-height: 260px;
+            z-index: 3;
+            border-top: 3px solid var(--v4-red);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.2);
+        }
+
+        .podium-card.rank-2 {
+            min-height: 235px;
+            z-index: 2;
+            border-top: 3px solid var(--silver);
+        }
+
+        .podium-card.rank-3 {
+            min-height: 215px;
+            z-index: 1;
+            border-top: 3px solid var(--bronze);
+        }
+
+        /* BADGES DO TOPO DO PÓDIO */
+        .podium-badge {
             position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .podium-card.rank-1 { height: 210px; width: 340px; z-index: 3; background: #181818; }
-        .podium-card.rank-1::before { background: var(--gold); box-shadow: 0 0 15px var(--gold); }
-        .podium-card.rank-2 { height: 180px; z-index: 2; }
-        .podium-card.rank-2::before { background: var(--silver); box-shadow: 0 0 10px var(--silver); }
-        .podium-card.rank-3 { height: 150px; z-index: 1; }
-        .podium-card.rank-3::before { background: var(--bronze); box-shadow: 0 0 10px var(--bronze); }
-
-        .podium-rank {
-            font-size: 2.2rem;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 2px 14px;
+            font-size: 1.1rem;
             font-weight: 900;
-            margin-bottom: 0.3rem;
+            border-radius: 2px;
+            text-transform: uppercase;
         }
 
-        .rank-1 .podium-rank { color: var(--gold); }
-        .rank-2 .podium-rank { color: var(--silver); }
-        .rank-3 .podium-rank { color: var(--bronze); }
+        .rank-1 .podium-badge {
+            background: var(--v4-red);
+            color: #ffffff;
+        }
+
+        .rank-2 .podium-badge {
+            background: #181818;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .rank-3 .podium-badge {
+            background: #181818;
+            color: var(--bronze);
+            border: 2px solid var(--bronze);
+        }
+
+        /* FOTO DA UNIDADE / AVATAR */
+        .podium-avatar {
+            width: 65px;
+            height: 65px;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid var(--v4-red);
+            background: #000;
+        }
+
+        .podium-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .podium-name {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: #fff;
-        }
-
-        .podium-score {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--v4-red);
-            text-shadow: 0 0 10px var(--v4-red-glow);
-        }
-
-        /* TABELA DE DADOS */
-        .table-section {
-            flex: 1;
-            padding: 0 2rem 1.5rem 2rem;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        /* Custom Scrollbar */
-        .table-section::-webkit-scrollbar {
-            width: 8px;
-        }
-        .table-section::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        .table-section::-webkit-scrollbar-thumb {
-            background: #2a2a2a;
-            border-radius: 4px;
-        }
-        .table-section::-webkit-scrollbar-thumb:hover {
-            background: var(--v4-red);
-        }
-
-        .table-wrapper {
-            width: 100%;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 6px;
-        }
-
-        thead {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background-color: var(--bg-color);
-        }
-
-        th {
-            padding: 0.6rem 1rem;
-            text-align: right;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        th span {
-            background-color: #171717;
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            border-bottom: 2px solid var(--v4-red);
-            color: #ffffff;
-        }
-
-        /* Alinhamento especifico das colunas */
-        th:nth-child(1), th:nth-child(2) { text-align: left; }
-        th:nth-child(2) { width: 28%; } /* Unidade */
-
-        tr {
-            background-color: var(--panel-bg);
-            transition: background-color 0.2s;
-            border-radius: 4px;
-        }
-
-        tr:hover {
-            background-color: #1a1a1a;
-        }
-
-        td {
-            padding: 0.75rem 1rem;
-            font-size: 0.95rem;
-            text-align: right;
-            font-weight: 500;
-            color: #e5e5e5;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        td:nth-child(1), td:nth-child(2) { text-align: left; }
-
-        td.rank-col { 
-            font-weight: 800; 
-            color: var(--v4-red); 
-            text-align: center;
             font-size: 1.1rem;
-            width: 60px;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            text-transform: uppercase;
         }
 
-        td.regional-col {
-            font-weight: 700;
-            color: #a0a0a0;
-            text-align: center;
+        .rank-1 .podium-name { color: var(--v4-red); }
+        .rank-2 .podium-name { color: #ffffff; }
+        .rank-3 .podium-name { color: #ffffff; }
+
+        .podium-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--green-bright);
+            line-height: 1.1;
         }
-        
-        td.unit-col {
+
+        .podium-subvalue {
+            font-size: 0.85rem;
             font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 2px;
+            margin-bottom: 0.8rem;
+        }
+
+        .podium-pct-pill {
+            padding: 4px 14px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            border-radius: 3px;
+        }
+
+        .rank-1 .podium-pct-pill {
+            background: var(--v4-red);
             color: #ffffff;
         }
 
-        /* Progress Bar V4 Red */
-        .progress-cell {
+        .rank-2 .podium-pct-pill, .rank-3 .podium-pct-pill {
+            background: #222222;
+            color: #888888;
+        }
+
+        /* LISTA DO 4º LUGAR EM DIANTE */
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .ranking-item {
+            background: var(--panel-bg);
+            border: 1px solid #222222;
+            border-radius: 4px;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .ranking-item:hover {
+            background: #181818;
+        }
+
+        .item-left {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
+            gap: 1.2rem;
         }
 
-        .progress-text {
-            font-weight: 700;
-            width: 65px;
-            text-align: right;
-            color: #fff;
+        .item-rank-box {
+            width: 38px;
+            height: 38px;
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #777777;
+            border-radius: 3px;
         }
 
-        .progress-bar-bg {
-            width: 80px;
-            height: 8px;
-            background-color: var(--bar-bg);
-            border-radius: 2px;
+        .item-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 4px;
+            border: 1px solid var(--v4-red);
+            overflow: hidden;
+            background: #000;
+        }
+
+        .item-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .item-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-progress-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .item-bar-bg {
+            width: 160px;
+            height: 6px;
+            background: #2a2a2a;
+            border-radius: 3px;
             overflow: hidden;
         }
 
-        .progress-bar-fill {
+        .item-bar-fill {
             height: 100%;
-            background-color: var(--v4-red);
-            border-radius: 2px;
-            box-shadow: 0 0 8px var(--v4-red-glow);
+            background: var(--v4-red);
+            border-radius: 3px;
+        }
+
+        .item-pct-text {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--v4-red);
+        }
+
+        .item-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .item-val-green {
+            color: var(--green-bright);
+        }
+
+        .item-val-slash {
+            color: #555555;
+            font-weight: 400;
+        }
+
+        .item-val-grey {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -306,10 +372,7 @@
     <!-- CABEÇALHO -->
     <header>
         <div class="header-brand">
-            <img src="logo-v4.jpg" alt="V4 Company" class="v4-logo">
-            <div class="header-title">
-                <h1>Ranking Unidades</h1>
-            </div>
+            <h1>Ranking Unidades</h1>
         </div>
         <div class="header-controls">
             <!-- Filtro por Regional -->
@@ -319,35 +382,20 @@
             <div class="header-month" id="current-month">
                 <!-- SETEMBRO DE 2026 -->
             </div>
+            <img src="logo-v4.jpg" alt="V4 Company" class="v4-logo-right">
         </div>
     </header>
 
-    <!-- PÓDIO TOP 3 -->
-    <section class="podium-section" id="podium-container">
-    </section>
+    <!-- ÁREA PRINCIPAL -->
+    <div class="main-container">
+        <!-- PÓDIO TOP 3 -->
+        <section class="podium-section" id="podium-container">
+        </section>
 
-    <!-- TABELA DE DADOS -->
-    <section class="table-section">
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th><span>Rank</span></th>
-                        <th><span>Unidade</span></th>
-                        <th><span>Meta Mês</span></th>
-                        <th><span>Meta Semana</span></th>
-                        <th><span>Recebido</span></th>
-                        <th><span>Delta Semana</span></th>
-                        <th><span>Realizado</span></th>
-                        <th><span>Disponível Ano</span></th>
-                        <th><span>Regional</span></th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                </tbody>
-            </table>
-        </div>
-    </section>
+        <!-- LISTA DO 4º EM DIANTE -->
+        <section class="ranking-list" id="ranking-list-container">
+        </section>
+    </div>
 
     <script>
         let allData = [];
@@ -401,7 +449,7 @@
                 renderDashboard(allData);
             } catch (error) {
                 console.error("Erro:", error);
-                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</td></tr>`;
+                document.getElementById('ranking-list-container').innerHTML = `<div style="text-align:center; color:var(--v4-red); padding: 2rem;">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</div>`;
             }
         }
 
@@ -431,29 +479,39 @@
         // RENDERIZAR DASHBOARD
         function renderDashboard(data) {
             const sortedData = [...data].sort((a, b) => b.realizadoNum - a.realizadoNum);
-            renderPodium(sortedData);
-            renderTable(sortedData);
+            
+            const top3 = sortedData.slice(0, 3);
+            const rest = sortedData.slice(3);
+
+            renderPodium(top3);
+            renderList(rest, 4);
         }
 
         // RENDERIZAR PÓDIO TOP 3
-        function renderPodium(data) {
+        function renderPodium(top3) {
             const podiumContainer = document.getElementById('podium-container');
             podiumContainer.innerHTML = '';
             
-            if (data.length === 0) return;
+            if (top3.length === 0) return;
 
-            const top3 = [];
-            if (data[1]) top3.push({ rank: 2, class: 'rank-2', data: data[1] });
-            if (data[0]) top3.push({ rank: 1, class: 'rank-1', data: data[0] });
-            if (data[2]) top3.push({ rank: 3, class: 'rank-3', data: data[2] });
+            // Ordenação visual: 2º lugar (esquerda), 1º lugar (centro), 3º lugar (direita)
+            const podiumOrder = [];
+            if (top3[1]) podiumOrder.push({ rank: 2, class: 'rank-2', data: top3[1] });
+            if (top3[0]) podiumOrder.push({ rank: 1, class: 'rank-1', data: top3[0] });
+            if (top3[2]) podiumOrder.push({ rank: 3, class: 'rank-3', data: top3[2] });
 
             let html = '';
-            top3.forEach(item => {
+            podiumOrder.forEach(item => {
                 html += `
                     <div class="podium-card ${item.class}">
-                        <div class="podium-rank">${item.rank}º</div>
+                        <div class="podium-badge">${item.rank}º</div>
+                        <div class="podium-avatar">
+                            <img src="logo-v4.jpg" alt="${item.data.unidade}" onerror="this.src='https://via.placeholder.com/65/000/E50914?text=V4'">
+                        </div>
                         <div class="podium-name" title="${item.data.unidade}">${item.data.unidade}</div>
-                        <div class="podium-score">${item.data.realizado}</div>
+                        <div class="podium-value">${formatCurrency(item.data.recebido)}</div>
+                        <div class="podium-subvalue">${formatCurrency(item.data.provisionado)}</div>
+                        <div class="podium-pct-pill">${item.data.realizado}</div>
                     </div>
                 `;
             });
@@ -461,47 +519,48 @@
             podiumContainer.innerHTML = html;
         }
 
-        // RENDERIZAR TABELA DE RANKING
-        function renderTable(data) {
-            const tableBody = document.getElementById('table-body');
-            let html = '';
+        // RENDERIZAR LISTA DO 4º LUGAR EM DIANTE
+        function renderList(restData, startRank) {
+            const listContainer = document.getElementById('ranking-list-container');
+            listContainer.innerHTML = '';
 
-            if (data.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade encontrada para esta regional.</td></tr>';
+            if (restData.length === 0) {
+                listContainer.innerHTML = '<div style="text-align:center; color:#888; padding: 1rem;">Nenhuma unidade para exibir nesta categoria.</div>';
                 return;
             }
 
-            data.forEach((row, index) => {
-                const realRank = index + 1; 
+            let html = '';
+            restData.forEach((row, index) => {
+                const currentRank = startRank + index;
                 const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
-                
-                // Lógica de puxar a semana correspondente à coluna 'semana_corte'
-                const semanaCorteStr = row.semana_corte ? row.semana_corte.toString().trim() : '3';
-                const metaSemanaVal = row['semana_' + semanaCorteStr] || '0';
-                
+
                 html += `
-                    <tr>
-                        <td class="rank-col">${realRank}º</td>
-                        <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
-                        <td>${formatCurrency(row.provisionado)}</td>
-                        <td>${formatCurrency(metaSemanaVal)}</td>
-                        <td>${formatCurrency(row.recebido)}</td>
-                        <td>${formatCurrency(row.valor_faltante_meta)}</td>
-                        <td>
-                            <div class="progress-cell">
-                                <span class="progress-text">${row.realizado || '0%'}</span>
-                                <div class="progress-bar-bg">
-                                    <div class="progress-bar-fill" style="width: ${progressWidth}%;"></div>
+                    <div class="ranking-item">
+                        <div class="item-left">
+                            <div class="item-rank-box">${currentRank}</div>
+                            <div class="item-avatar">
+                                <img src="logo-v4.jpg" alt="${row.unidade}" onerror="this.src='https://via.placeholder.com/42/000/E50914?text=V4'">
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">${row.unidade}</div>
+                                <div class="item-progress-row">
+                                    <div class="item-bar-bg">
+                                        <div class="item-bar-fill" style="width: ${progressWidth}%;"></div>
+                                    </div>
+                                    <span class="item-pct-text">${row.realizado || '0%'}</span>
                                 </div>
                             </div>
-                        </td>
-                        <td>${formatCurrency(row.disponivel_ano)}</td>
-                        <td class="regional-col">${row.str_regional || '-'}</td>
-                    </tr>
+                        </div>
+                        <div class="item-right">
+                            <span class="item-val-green">${formatCurrency(row.recebido)}</span>
+                            <span class="item-val-slash">/</span>
+                            <span class="item-val-grey">${formatCurrency(row.provisionado)}</span>
+                        </div>
+                    </div>
                 `;
             });
 
-            tableBody.innerHTML = html;
+            listContainer.innerHTML = html;
         }
 
         document.addEventListener('DOMContentLoaded', loadData);
