@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cash SC - V4 Company</title>
+    <!-- Fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://me.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=ruUXGmQ9LjC4_epqkZKRhrIPOreY1pNax-Eho1gUWRc1Ov9PzHBqB1cXNHzyTvRWWPgKwLLP3lpeIUavKhIB4s3wYS8sSFKzJ9IJE3AYMlRL5Gp7rSbq9ouxNCJgiWIY8HU7KEv6z8lCF5YkPIgLrPcqmr8Oxed5O_OazDwgoY0OASE0sh4WZLQe2YGmVny-IoVtnjWUU6GaBk7C8iytIB7G4HjuutPNY-_UhvT6slEF5OH6doRQ57jFKCYfkPgklRqwKyHNk6Y-wu_Ad4OtUQoc96M3YIZ6hRaj_xi0jLpDsKdqFnmDlWMJNzuk9Z59Bf_Qb6MG6l0wfwGcHMWP5A" charset="UTF-8"></script><style>
+        :root {
+            --bg-color: #0a0a0a;
+            --panel-bg: #141414;
+            --card-bg: #1c1c1c;
+            --text-main: #ffffff;
+            --text-muted: #8c8c8c;
+            --v4-red: #E50914;
+            --v4-red-dark: #80050b;
+            --v4-red-glow: rgba(229, 9, 20, 0.4);
+            --bar-bg: #2a2a2a;
+            --gold: #FFD700;
+            --silver: #E0E0E0;
+            --bronze: #CD7F32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* HEADER V4 STYLE */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: #0d0d0d;
+            border-bottom: 2px solid var(--v4-red);
+            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.15);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .v4-badge {
+            background-color: var(--v4-red);
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.4rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 12px var(--v4-red-glow);
+        }
+
+        .header-title h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-title span {
+            font-size: 0.9rem;
+            color: var(--v4-red);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .v4-select {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid var(--v4-red);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(229, 9, 20, 0.1);
+        }
+
+        .v4-select:focus, .v4-select:hover {
+            box-shadow: 0 0 12px var(--v4-red-glow);
+            border-color: #ff1a26;
+        }
+
+        .header-date {
+            text-align: right;
+        }
+
+        .header-date #time {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .header-date #date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: capitalize;
+        }
+
+        /* PÓDIO TOP 3 */
+        .podium-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 1.5rem 0;
+            gap: 1.5rem;
+            min-height: 240px;
+        }
+
+        .podium-card {
+            background: var(--panel-bg);
+            border-radius: 8px 8px 0 0;
+            padding: 1.2rem;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 -8px 25px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-bottom: none;
+            position: relative;
+        }
+
+        .podium-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .podium-card.rank-1 { height: 210px; width: 340px; z-index: 3; background: #181818; }
+        .podium-card.rank-1::before { background: var(--gold); box-shadow: 0 0 15px var(--gold); }
+        .podium-card.rank-2 { height: 180px; z-index: 2; }
+        .podium-card.rank-2::before { background: var(--silver); box-shadow: 0 0 10px var(--silver); }
+        .podium-card.rank-3 { height: 150px; z-index: 1; }
+        .podium-card.rank-3::before { background: var(--bronze); box-shadow: 0 0 10px var(--bronze); }
+
+        .podium-rank {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+        }
+        
+        .rank-1 .podium-rank { color: var(--gold); }
+        .rank-2 .podium-rank { color: var(--silver); }
+        .rank-3 .podium-rank { color: var(--bronze); }
+
+        .podium-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #fff;
+        }
+
+        .podium-score {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--v4-red);
+            text-shadow: 0 0 10px var(--v4-red-glow);
+        }
+
+        /* TABELA DE DADOS */
+        .table-section {
+            flex: 1;
+            padding: 0 2rem 1.5rem 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--bg-color);
+        }
+
+        th {
+            padding: 0.6rem 1rem;
+            text-align: right;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        th span {
+            background-color: #171717;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            border-bottom: 2px solid var(--v4-red);
+            color: #ffffff;
+        }
+
+        th:nth-child(1), th:nth-child(2), th:nth-child(3) { text-align: left; }
+        th:nth-child(3) { width: 25%; }
+
+        tbody {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        .table-wrapper table {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .table-wrapper thead, .table-wrapper tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        tbody:hover {
+            animation-play-state: paused;
+        }
+
+        tr {
+            background-color: var(--panel-bg);
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+
+        tr:hover {
+            background-color: #1a1a1a;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            text-align: right;
+            font-weight: 500;
+            color: #e5e5e5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        td:nth-child(1), td:nth-child(2), td:nth-child(3) { text-align: left; }
+
+        td.rank-col { 
+            font-weight: 800; 
+            color: var(--v4-red); 
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        td.regional-col {
+            font-weight: 700;
+            color: #a0a0a0;
+        }
+        
+        td.unit-col {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Progress Bar V4 Red */
+        .progress-cell {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .progress-text {
+            font-weight: 700;
+            width: 65px;
+            text-align: right;
+            color: #fff;
+        }
+
+        .progress-bar-bg {
+            width: 90px;
+            height: 8px;
+            background-color: var(--bar-bg);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--v4-red);
+            border-radius: 2px;
+            box-shadow: 0 0 8px var(--v4-red-glow);
+        }
+
+        /* Scroll Infinito */
+        @keyframes autoScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(calc(-100% + 450px)); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="header-brand">
+            <div class="v4-badge">V4</div>
+            <div class="header-title">
+                <h1>Cash SC</h1>
+                <span>Ranking de Alta Performance</span>
+            </div>
+        </div>
+        <div class="header-controls">
+            <!-- Filtro por Regional -->
+            <select id="regional-filter" class="v4-select">
+                <option value="all">Todas as Regionais</option>
+            </select>
+            <div class="header-date">
+                <div id="time">00:00:00</div>
+                <div id="date">Carregando data...</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PÓDIO TOP 3 -->
+    <section class="podium-section" id="podium-container">
+    </section>
+
+    <!-- TABELA DE DADOS -->
+    <section class="table-section">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th><span>Rank</span></th>
+                        <th><span>Regional</span></th>
+                        <th><span>Unidade</span></th>
+                        <th><span>Recebido</span></th>
+                        <th><span>Realizado</span></th>
+                        <th><span>Semana 3</span></th>
+                        <th><span>Provisionado</span></th>
+                        <th><span>Disponível Ano</span></th>
+                        <th><span>Faltante Meta</span></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        let allData = [];
+
+        // RELÓGIO E DATA DINÂMICA
+        function updateDateTime() {
+            const now = new Date();
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('time').textContent = now.toLocaleTimeString('pt-BR', timeOptions);
+            
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let dateStr = now.toLocaleDateString('pt-BR', dateOptions);
+            document.getElementById('date').textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // CARREGAMENTO DO JSON
+        async function loadData() {
+            try {
+                const response = await fetch('dados.json');
+                if (!response.ok) throw new Error('Falha ao carregar o arquivo JSON.');
+                const data = await response.json();
+                
+                allData = data.map(item => {
+                    let realizadoLimpo = (item.realizado || '0').replace('%', '').replace(',', '.');
+                    let realizadoNum = parseFloat(realizadoLimpo);
+                    if (isNaN(realizadoNum)) realizadoNum = 0;
+
+                    return {
+                        ...item,
+                        realizadoNum: realizadoNum
+                    };
+                });
+
+                populateFilter(allData);
+                renderDashboard(allData);
+            } catch (error) {
+                console.error("Erro:", error);
+                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</td></tr>`;
+            }
+        }
+
+        // POPULAR FILTRO DE REGIONAIS
+        function populateFilter(data) {
+            const filter = document.getElementById('regional-filter');
+            const regionais = [...new Set(data.map(item => item.str_regional).filter(r => r && r.trim() !== ''))].sort();
+            
+            regionais.forEach(reg => {
+                const option = document.createElement('option');
+                option.value = reg;
+                option.textContent = reg;
+                filter.appendChild(option);
+            });
+
+            filter.addEventListener('change', (e) => {
+                const selected = e.target.value;
+                if (selected === 'all') {
+                    renderDashboard(allData);
+                } else {
+                    const filtered = allData.filter(item => item.str_regional === selected);
+                    renderDashboard(filtered);
+                }
+            });
+        }
+
+        // RENDERIZAR DASHBOARD
+        function renderDashboard(data) {
+            const sortedData = [...data].sort((a, b) => b.realizadoNum - a.realizadoNum);
+            renderPodium(sortedData);
+            renderTable(sortedData);
+        }
+
+        // RENDERIZAR PÓDIO TOP 3
+        function renderPodium(data) {
+            const podiumContainer = document.getElementById('podium-container');
+            podiumContainer.innerHTML = '';
+            
+            if (data.length === 0) return;
+
+            const top3 = [];
+            if (data[1]) top3.push({ rank: 2, class: 'rank-2', data: data[1] });
+            if (data[0]) top3.push({ rank: 1, class: 'rank-1', data: data[0] });
+            if (data[2]) top3.push({ rank: 3, class: 'rank-3', data: data[2] });
+
+            let html = '';
+            top3.forEach(item => {
+                html += `
+                    <div class="podium-card ${item.class}">
+                        <div class="podium-rank">${item.rank}º</div>
+                        <div class="podium-name" title="${item.data.unidade}">${item.data.unidade}</div>
+                        <div class="podium-score">${item.data.realizado}</div>
+                    </div>
+                `;
+            });
+
+            podiumContainer.innerHTML = html;
+        }
+
+        // RENDERIZAR TABELA DE RANKING
+        function renderTable(data) {
+            const tableBody = document.getElementById('table-body');
+            let html = '';
+
+            if (data.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade encontrada para esta regional.</td></tr>';
+                tableBody.style.animation = 'none';
+                return;
+            }
+
+            let dataToRender = [];
+            if (data.length < 8) {
+                tableBody.style.animation = 'none';
+                dataToRender = [...data];
+            } else {
+                tableBody.style.animation = 'autoScroll 30s linear infinite';
+                dataToRender = [...data, ...data];
+            }
+
+            dataToRender.forEach((row, index) => {
+                const realRank = (index % data.length) + 1; 
+                const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
+                
+                html += `
+                    <tr>
+                        <td class="rank-col">${realRank}º</td>
+                        <td class="regional-col">${row.str_regional || '-'}</td>
+                        <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
+                        <td>${row.recebido || '0'}</td>
+                        <td>
+                            <div class="progress-cell">
+                                <span class="progress-text">${row.realizado || '0%'}</span>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: ${progressWidth}%;"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${row.semana_3 || '0'}</td>
+                        <td>${row.provisionado || '0'}</td>
+                        <td>${row.disponivel_ano || '0'}</td>
+                        <td>${row.valor_faltante_meta || '0'}</td>
+                    </tr>
+                `;
+            });
+
+            tableBody.innerHTML = html;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
