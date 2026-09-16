@@ -17,7 +17,6 @@
             --v4-red-dark: #80050b;
             --v4-red-glow: rgba(229, 9, 20, 0.4);
             --bar-bg: #2a2a2a;
-            --gold: #CD7F32;
             --silver: #E0E0E0;
             --bronze: #CD7F32;
             --green-money: #00E676;
@@ -98,142 +97,10 @@
             border-radius: 2px;
         }
 
-        /* PÓDIO TOP 3 ESTILO NOVO (SEM FOTOS) */
-        .podium-section {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding: 2.5rem 0 1.5rem 0;
-            gap: 1.5rem;
-            min-height: 250px;
-        }
-
-        .podium-card {
-            background: var(--panel-bg);
-            border-radius: 4px;
-            padding: 1.8rem 1.2rem 1.2rem 1.2rem;
-            text-align: center;
-            width: 320px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Linha e Badge do Topo do Pódio */
-        .podium-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-        }
-
-        .podium-badge {
-            position: absolute;
-            top: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32px;
-            height: 32px;
-            font-size: 1.1rem;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 3px;
-            color: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        /* 1º Lugar */
-        .podium-card.rank-1 { 
-            height: 220px; 
-            width: 360px; 
-            z-index: 3; 
-            background: #161616;
-            border-top: 3px solid var(--v4-red);
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.25);
-        }
-        .podium-card.rank-1 .podium-badge { 
-            background: var(--v4-red); 
-        }
-
-        /* 2º Lugar */
-        .podium-card.rank-2 { 
-            height: 195px; 
-            z-index: 2; 
-            border-top: 3px solid #ffffff;
-        }
-        .podium-card.rank-2 .podium-badge { 
-            background: #2a2a2a; 
-            border: 1px solid #ffffff;
-        }
-
-        /* 3º Lugar */
-        .podium-card.rank-3 { 
-            height: 175px; 
-            z-index: 1; 
-            border-top: 3px solid #CD7F32;
-        }
-        .podium-card.rank-3 .podium-badge { 
-            background: #2a2a2a; 
-            border: 1px solid #CD7F32;
-            color: #CD7F32;
-        }
-
-        .podium-name {
-            font-size: 1.1rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            width: 100%;
-        }
-
-        .podium-card.rank-1 .podium-name {
-            color: var(--v4-red);
-            font-size: 1.25rem;
-        }
-
-        .podium-value-main {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--green-money);
-            margin-bottom: 0.2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .podium-value-sub {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-        }
-
-        .podium-pct-pill {
-            background-color: #262626;
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 0.95rem;
-            padding: 0.3rem 1.2rem;
-            border-radius: 4px;
-        }
-
-        .podium-card.rank-1 .podium-pct-pill {
-            background-color: var(--v4-red);
-            color: #ffffff;
-        }
-
-        /* TABELA DE DADOS (A PARTIR DO 4º LUGAR) */
+        /* TABELA DE DADOS */
         .table-section {
             flex: 1;
-            padding: 0 2rem 1.5rem 2rem;
+            padding: 1.5rem 2rem 1.5rem 2rem;
             overflow-y: auto;
             position: relative;
         }
@@ -298,6 +165,50 @@
 
         tr:hover {
             background-color: #1a1a1a;
+        }
+
+        /* Estilos de Destaque para os 3 primeiros colocados na tabela */
+        tr.top-rank-1 {
+            background-color: #1a080a;
+            border-left: 4px solid var(--v4-red);
+        }
+        tr.top-rank-1 td.rank-col {
+            color: var(--v4-red);
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-shadow: 0 0 10px var(--v4-red-glow);
+        }
+        tr.top-rank-1 td.unit-col {
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        tr.top-rank-2 {
+            background-color: #161616;
+            border-left: 4px solid var(--silver);
+        }
+        tr.top-rank-2 td.rank-col {
+            color: var(--silver);
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+        tr.top-rank-2 td.unit-col {
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        tr.top-rank-3 {
+            background-color: #16120e;
+            border-left: 4px solid var(--bronze);
+        }
+        tr.top-rank-3 td.rank-col {
+            color: var(--bronze);
+            font-size: 1.15rem;
+            font-weight: 900;
+        }
+        tr.top-rank-3 td.unit-col {
+            color: #ffffff;
+            font-weight: 800;
         }
 
         td {
@@ -383,11 +294,7 @@
         </div>
     </header>
 
-    <!-- PÓDIO TOP 3 (DESIGN NOVO SEM FOTO) -->
-    <section class="podium-section" id="podium-container">
-    </section>
-
-    <!-- TABELA DE DADOS (A PARTIR DO 4º LUGAR) -->
+    <!-- TABELA DE DADOS (1º AO ÚLTIMO COLOCADO) -->
     <section class="table-section">
         <div class="table-wrapper">
             <table>
@@ -492,62 +399,35 @@
         // RENDERIZAR DASHBOARD
         function renderDashboard(data) {
             const sortedData = [...data].sort((a, b) => b.realizadoNum - a.realizadoNum);
-            renderPodium(sortedData);
             renderTable(sortedData);
         }
 
-        // RENDERIZAR PÓDIO TOP 3
-        function renderPodium(data) {
-            const podiumContainer = document.getElementById('podium-container');
-            podiumContainer.innerHTML = '';
-            
-            if (data.length === 0) return;
-
-            const top3 = [];
-            if (data[1]) top3.push({ rank: 2, class: 'rank-2', data: data[1] });
-            if (data[0]) top3.push({ rank: 1, class: 'rank-1', data: data[0] });
-            if (data[2]) top3.push({ rank: 3, class: 'rank-3', data: data[2] });
-
-            let html = '';
-            top3.forEach(item => {
-                html += `
-                    <div class="podium-card ${item.class}">
-                        <div class="podium-badge">${item.rank}º</div>
-                        <div class="podium-name" title="${item.data.unidade}">${item.data.unidade}</div>
-                        <div class="podium-value-main">${formatCurrency(item.data.recebido)}</div>
-                        <div class="podium-value-sub">Meta: ${formatCurrency(item.data.provisionado)}</div>
-                        <div class="podium-pct-pill">${item.data.realizado}</div>
-                    </div>
-                `;
-            });
-
-            podiumContainer.innerHTML = html;
-        }
-
-        // RENDERIZAR TABELA DE RANKING (A PARTIR DO 4º LUGAR)
+        // RENDERIZAR TABELA DE RANKING (TODOS OS LUGARES A PARTIR DO 1º COM DESTAQUE NOS TOP 3)
         function renderTable(data) {
             const tableBody = document.getElementById('table-body');
             let html = '';
 
-            // Se a lista tiver 3 ou menos itens, a tabela fica vazia
-            if (data.length <= 3) {
-                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade adicional encontrada para esta visualização.</td></tr>';
+            if (data.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade encontrada para esta regional.</td></tr>';
                 return;
             }
 
-            // Pega do 4º colocado em diante (índice 3 em diante)
-            const listData = data.slice(3);
-
-            listData.forEach((row, index) => {
-                const realRank = index + 4; // Começa no 4º
+            data.forEach((row, index) => {
+                const realRank = index + 1; // Começa no 1º
                 const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
                 
                 // Lógica de puxar a semana correspondente à coluna 'semana_corte'
                 const semanaCorteStr = row.semana_corte ? row.semana_corte.toString().trim() : '3';
                 const metaSemanaVal = row['semana_' + semanaCorteStr] || '0';
                 
+                // Classe de destaque para os 3 primeiros colocados
+                let rankRowClass = '';
+                if (realRank === 1) rankRowClass = 'top-rank-1';
+                else if (realRank === 2) rankRowClass = 'top-rank-2';
+                else if (realRank === 3) rankRowClass = 'top-rank-3';
+
                 html += `
-                    <tr>
+                    <tr class="${rankRowClass}">
                         <td class="rank-col">${realRank}º</td>
                         <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
                         <td>${formatCurrency(row.provisionado)}</td>
