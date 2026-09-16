@@ -9,16 +9,18 @@
     <style>
         :root {
             --bg-color: #0a0a0a;
-            --panel-bg: #111111;
-            --card-bg: #161616;
+            --panel-bg: #121212;
+            --card-bg: #181818;
             --text-main: #ffffff;
-            --text-muted: #888888;
+            --text-muted: #8c8c8c;
             --v4-red: #E50914;
+            --v4-red-dark: #80050b;
             --v4-red-glow: rgba(229, 9, 20, 0.4);
-            --green-bright: #00E676;
-            --gold: #FFD700;
+            --bar-bg: #2a2a2a;
+            --gold: #CD7F32;
             --silver: #E0E0E0;
             --bronze: #CD7F32;
+            --green-money: #00E676;
         }
 
         * {
@@ -37,22 +39,23 @@
             overflow: hidden;
         }
 
-        /* HEADER */
+        /* HEADER V4 STYLE */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 3rem;
             background: #000000;
             border-bottom: 2px solid var(--v4-red);
+            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.15);
         }
 
         .header-brand h1 {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             font-weight: 900;
             color: var(--v4-red);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .header-controls {
@@ -65,16 +68,23 @@
             background-color: #1a1a1a;
             color: #ffffff;
             border: 1px solid var(--v4-red);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
             font-weight: 600;
             outline: none;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(229, 9, 20, 0.1);
+        }
+
+        .v4-select:focus, .v4-select:hover {
+            box-shadow: 0 0 12px var(--v4-red-glow);
+            border-color: #ff1a26;
         }
 
         .header-month {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 900;
             color: #ffffff;
             text-transform: uppercase;
@@ -82,294 +92,281 @@
         }
 
         .v4-logo-right {
-            height: 42px;
-            width: 42px;
+            height: 48px;
+            width: 48px;
             object-fit: contain;
+            border-radius: 2px;
         }
 
-        /* MAIN CONTENT AREA */
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem 2.5rem;
-            overflow-y: auto;
-            gap: 1.5rem;
-        }
-
-        .main-container::-webkit-scrollbar {
-            width: 8px;
-        }
-        .main-container::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        .main-container::-webkit-scrollbar-thumb {
-            background: #2a2a2a;
-            border-radius: 4px;
-        }
-
-        /* PÓDIO TOP 3 */
+        /* PÓDIO TOP 3 ESTILO NOVO (SEM FOTOS) */
         .podium-section {
             display: flex;
             justify-content: center;
             align-items: flex-end;
+            padding: 2.5rem 0 1.5rem 0;
             gap: 1.5rem;
-            padding-top: 1rem;
-            min-height: 270px;
+            min-height: 250px;
         }
 
         .podium-card {
             background: var(--panel-bg);
-            border-radius: 6px;
-            padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+            border-radius: 4px;
+            padding: 1.8rem 1.2rem 1.2rem 1.2rem;
             text-align: center;
             width: 320px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.05);
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 1px solid #222;
+            justify-content: center;
         }
 
-        /* CARD PLACEMENT SPECIFICS */
-        .podium-card.rank-1 {
-            min-height: 260px;
-            z-index: 3;
-            border-top: 3px solid var(--v4-red);
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.2);
+        /* Linha e Badge do Topo do Pódio */
+        .podium-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
         }
 
-        .podium-card.rank-2 {
-            min-height: 235px;
-            z-index: 2;
-            border-top: 3px solid var(--silver);
-        }
-
-        .podium-card.rank-3 {
-            min-height: 215px;
-            z-index: 1;
-            border-top: 3px solid var(--bronze);
-        }
-
-        /* BADGES DO TOPO DO PÓDIO */
         .podium-badge {
             position: absolute;
             top: -16px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 2px 14px;
+            width: 32px;
+            height: 32px;
             font-size: 1.1rem;
             font-weight: 900;
-            border-radius: 2px;
-            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        .rank-1 .podium-badge {
-            background: var(--v4-red);
-            color: #ffffff;
+        /* 1º Lugar */
+        .podium-card.rank-1 { 
+            height: 220px; 
+            width: 360px; 
+            z-index: 3; 
+            background: #161616;
+            border-top: 3px solid var(--v4-red);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.25);
+        }
+        .podium-card.rank-1 .podium-badge { 
+            background: var(--v4-red); 
         }
 
-        .rank-2 .podium-badge {
-            background: #181818;
-            color: #ffffff;
-            border: 2px solid #ffffff;
+        /* 2º Lugar */
+        .podium-card.rank-2 { 
+            height: 195px; 
+            z-index: 2; 
+            border-top: 3px solid #ffffff;
+        }
+        .podium-card.rank-2 .podium-badge { 
+            background: #2a2a2a; 
+            border: 1px solid #ffffff;
         }
 
-        .rank-3 .podium-badge {
-            background: #181818;
-            color: var(--bronze);
-            border: 2px solid var(--bronze);
+        /* 3º Lugar */
+        .podium-card.rank-3 { 
+            height: 175px; 
+            z-index: 1; 
+            border-top: 3px solid #CD7F32;
         }
-
-        /* FOTO DA UNIDADE / AVATAR */
-        .podium-avatar {
-            width: 65px;
-            height: 65px;
-            margin: 0.5rem 0;
-            border-radius: 4px;
-            overflow: hidden;
-            border: 2px solid var(--v4-red);
-            background: #000;
-        }
-
-        .podium-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .podium-card.rank-3 .podium-badge { 
+            background: #2a2a2a; 
+            border: 1px solid #CD7F32;
+            color: #CD7F32;
         }
 
         .podium-name {
             font-size: 1.1rem;
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 0.5rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: 100%;
+            color: #ffffff;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
         }
 
-        .rank-1 .podium-name { color: var(--v4-red); }
-        .rank-2 .podium-name { color: #ffffff; }
-        .rank-3 .podium-name { color: #ffffff; }
+        .podium-card.rank-1 .podium-name {
+            color: var(--v4-red);
+            font-size: 1.25rem;
+        }
 
-        .podium-value {
+        .podium-value-main {
             font-size: 1.8rem;
             font-weight: 900;
-            color: var(--green-bright);
-            line-height: 1.1;
+            color: var(--green-money);
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.5px;
         }
 
-        .podium-subvalue {
+        .podium-value-sub {
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-muted);
-            margin-top: 2px;
             margin-bottom: 0.8rem;
         }
 
         .podium-pct-pill {
-            padding: 4px 14px;
-            font-size: 0.9rem;
+            background-color: #262626;
+            color: #ffffff;
             font-weight: 800;
-            border-radius: 3px;
+            font-size: 0.95rem;
+            padding: 0.3rem 1.2rem;
+            border-radius: 4px;
         }
 
-        .rank-1 .podium-pct-pill {
-            background: var(--v4-red);
+        .podium-card.rank-1 .podium-pct-pill {
+            background-color: var(--v4-red);
             color: #ffffff;
         }
 
-        .rank-2 .podium-pct-pill, .rank-3 .podium-pct-pill {
-            background: #222222;
-            color: #888888;
+        /* TABELA DE DADOS (A PARTIR DO 4º LUGAR) */
+        .table-section {
+            flex: 1;
+            padding: 0 2rem 1.5rem 2rem;
+            overflow-y: auto;
+            position: relative;
         }
 
-        /* LISTA DO 4º LUGAR EM DIANTE */
-        .ranking-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .table-section::-webkit-scrollbar {
+            width: 8px;
+        }
+        .table-section::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        .table-section::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+        .table-section::-webkit-scrollbar-thumb:hover {
+            background: var(--v4-red);
+        }
+
+        .table-wrapper {
             width: 100%;
         }
 
-        .ranking-item {
-            background: var(--panel-bg);
-            border: 1px solid #222222;
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--bg-color);
+        }
+
+        th {
+            padding: 0.6rem 1rem;
+            text-align: right;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        th span {
+            background-color: #171717;
+            padding: 0.4rem 0.8rem;
             border-radius: 4px;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.2s;
+            border-bottom: 2px solid var(--v4-red);
+            color: #ffffff;
         }
 
-        .ranking-item:hover {
-            background: #181818;
-        }
+        th:nth-child(1), th:nth-child(2) { text-align: left; }
+        th:nth-child(2) { width: 28%; }
 
-        .item-left {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .item-rank-box {
-            width: 38px;
-            height: 38px;
-            background: #1a1a1a;
-            border: 1px solid #333333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: #777777;
-            border-radius: 3px;
-        }
-
-        .item-avatar {
-            width: 42px;
-            height: 42px;
+        tr {
+            background-color: var(--panel-bg);
+            transition: background-color 0.2s;
             border-radius: 4px;
-            border: 1px solid var(--v4-red);
+        }
+
+        tr:hover {
+            background-color: #1a1a1a;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            text-align: right;
+            font-weight: 500;
+            color: #e5e5e5;
+            white-space: nowrap;
             overflow: hidden;
-            background: #000;
+            text-overflow: ellipsis;
         }
 
-        .item-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        td:nth-child(1), td:nth-child(2) { text-align: left; }
+
+        td.rank-col { 
+            font-weight: 800; 
+            color: var(--text-muted); 
+            text-align: center;
+            font-size: 1.1rem;
+            width: 60px;
         }
 
-        .item-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+        td.regional-col {
+            font-weight: 700;
+            color: #a0a0a0;
+            text-align: center;
         }
-
-        .item-name {
-            font-size: 1.05rem;
-            font-weight: 800;
+        
+        td.unit-col {
+            font-weight: 700;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .item-progress-row {
+        /* Progress Bar V4 Red */
+        .progress-cell {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: flex-end;
+            gap: 10px;
         }
 
-        .item-bar-bg {
-            width: 160px;
-            height: 6px;
-            background: #2a2a2a;
-            border-radius: 3px;
+        .progress-text {
+            font-weight: 700;
+            width: 65px;
+            text-align: right;
+            color: #fff;
+        }
+
+        .progress-bar-bg {
+            width: 80px;
+            height: 8px;
+            background-color: var(--bar-bg);
+            border-radius: 2px;
             overflow: hidden;
         }
 
-        .item-bar-fill {
+        .progress-bar-fill {
             height: 100%;
-            background: var(--v4-red);
-            border-radius: 3px;
-        }
-
-        .item-pct-text {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--v4-red);
-        }
-
-        .item-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.25rem;
-            font-weight: 800;
-        }
-
-        .item-val-green {
-            color: var(--green-bright);
-        }
-
-        .item-val-slash {
-            color: #555555;
-            font-weight: 400;
-        }
-
-        .item-val-grey {
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 600;
+            background-color: var(--v4-red);
+            border-radius: 2px;
+            box-shadow: 0 0 8px var(--v4-red-glow);
         }
     </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
+    <!-- CABEÇALHO DA PÁGINA -->
     <header>
         <div class="header-brand">
             <h1>Ranking Unidades</h1>
@@ -386,16 +383,32 @@
         </div>
     </header>
 
-    <!-- ÁREA PRINCIPAL -->
-    <div class="main-container">
-        <!-- PÓDIO TOP 3 -->
-        <section class="podium-section" id="podium-container">
-        </section>
+    <!-- PÓDIO TOP 3 (DESIGN NOVO SEM FOTO) -->
+    <section class="podium-section" id="podium-container">
+    </section>
 
-        <!-- LISTA DO 4º EM DIANTE -->
-        <section class="ranking-list" id="ranking-list-container">
-        </section>
-    </div>
+    <!-- TABELA DE DADOS (A PARTIR DO 4º LUGAR) -->
+    <section class="table-section">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th><span>Rank</span></th>
+                        <th><span>Unidade</span></th>
+                        <th><span>Meta Mês</span></th>
+                        <th><span>Meta Semana</span></th>
+                        <th><span>Recebido</span></th>
+                        <th><span>Delta Semana</span></th>
+                        <th><span>Realizado</span></th>
+                        <th><span>Disponível Ano</span></th>
+                        <th><span>Regional</span></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <script>
         let allData = [];
@@ -449,7 +462,7 @@
                 renderDashboard(allData);
             } catch (error) {
                 console.error("Erro:", error);
-                document.getElementById('ranking-list-container').innerHTML = `<div style="text-align:center; color:var(--v4-red); padding: 2rem;">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</div>`;
+                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</td></tr>`;
             }
         }
 
@@ -479,38 +492,30 @@
         // RENDERIZAR DASHBOARD
         function renderDashboard(data) {
             const sortedData = [...data].sort((a, b) => b.realizadoNum - a.realizadoNum);
-            
-            const top3 = sortedData.slice(0, 3);
-            const rest = sortedData.slice(3);
-
-            renderPodium(top3);
-            renderList(rest, 4);
+            renderPodium(sortedData);
+            renderTable(sortedData);
         }
 
         // RENDERIZAR PÓDIO TOP 3
-        function renderPodium(top3) {
+        function renderPodium(data) {
             const podiumContainer = document.getElementById('podium-container');
             podiumContainer.innerHTML = '';
             
-            if (top3.length === 0) return;
+            if (data.length === 0) return;
 
-            // Ordenação visual: 2º lugar (esquerda), 1º lugar (centro), 3º lugar (direita)
-            const podiumOrder = [];
-            if (top3[1]) podiumOrder.push({ rank: 2, class: 'rank-2', data: top3[1] });
-            if (top3[0]) podiumOrder.push({ rank: 1, class: 'rank-1', data: top3[0] });
-            if (top3[2]) podiumOrder.push({ rank: 3, class: 'rank-3', data: top3[2] });
+            const top3 = [];
+            if (data[1]) top3.push({ rank: 2, class: 'rank-2', data: data[1] });
+            if (data[0]) top3.push({ rank: 1, class: 'rank-1', data: data[0] });
+            if (data[2]) top3.push({ rank: 3, class: 'rank-3', data: data[2] });
 
             let html = '';
-            podiumOrder.forEach(item => {
+            top3.forEach(item => {
                 html += `
                     <div class="podium-card ${item.class}">
                         <div class="podium-badge">${item.rank}º</div>
-                        <div class="podium-avatar">
-                            <img src="logo-v4.jpg" alt="${item.data.unidade}" onerror="this.src='https://via.placeholder.com/65/000/E50914?text=V4'">
-                        </div>
                         <div class="podium-name" title="${item.data.unidade}">${item.data.unidade}</div>
-                        <div class="podium-value">${formatCurrency(item.data.recebido)}</div>
-                        <div class="podium-subvalue">${formatCurrency(item.data.provisionado)}</div>
+                        <div class="podium-value-main">${formatCurrency(item.data.recebido)}</div>
+                        <div class="podium-value-sub">Meta: ${formatCurrency(item.data.provisionado)}</div>
                         <div class="podium-pct-pill">${item.data.realizado}</div>
                     </div>
                 `;
@@ -519,48 +524,51 @@
             podiumContainer.innerHTML = html;
         }
 
-        // RENDERIZAR LISTA DO 4º LUGAR EM DIANTE
-        function renderList(restData, startRank) {
-            const listContainer = document.getElementById('ranking-list-container');
-            listContainer.innerHTML = '';
+        // RENDERIZAR TABELA DE RANKING (A PARTIR DO 4º LUGAR)
+        function renderTable(data) {
+            const tableBody = document.getElementById('table-body');
+            let html = '';
 
-            if (restData.length === 0) {
-                listContainer.innerHTML = '<div style="text-align:center; color:#888; padding: 1rem;">Nenhuma unidade para exibir nesta categoria.</div>';
+            // Se a lista tiver 3 ou menos itens, a tabela fica vazia
+            if (data.length <= 3) {
+                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade adicional encontrada para esta visualização.</td></tr>';
                 return;
             }
 
-            let html = '';
-            restData.forEach((row, index) => {
-                const currentRank = startRank + index;
-                const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
+            // Pega do 4º colocado em diante (índice 3 em diante)
+            const listData = data.slice(3);
 
+            listData.forEach((row, index) => {
+                const realRank = index + 4; // Começa no 4º
+                const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
+                
+                // Lógica de puxar a semana correspondente à coluna 'semana_corte'
+                const semanaCorteStr = row.semana_corte ? row.semana_corte.toString().trim() : '3';
+                const metaSemanaVal = row['semana_' + semanaCorteStr] || '0';
+                
                 html += `
-                    <div class="ranking-item">
-                        <div class="item-left">
-                            <div class="item-rank-box">${currentRank}</div>
-                            <div class="item-avatar">
-                                <img src="logo-v4.jpg" alt="${row.unidade}" onerror="this.src='https://via.placeholder.com/42/000/E50914?text=V4'">
-                            </div>
-                            <div class="item-info">
-                                <div class="item-name">${row.unidade}</div>
-                                <div class="item-progress-row">
-                                    <div class="item-bar-bg">
-                                        <div class="item-bar-fill" style="width: ${progressWidth}%;"></div>
-                                    </div>
-                                    <span class="item-pct-text">${row.realizado || '0%'}</span>
+                    <tr>
+                        <td class="rank-col">${realRank}º</td>
+                        <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
+                        <td>${formatCurrency(row.provisionado)}</td>
+                        <td>${formatCurrency(metaSemanaVal)}</td>
+                        <td>${formatCurrency(row.recebido)}</td>
+                        <td>${formatCurrency(row.valor_faltante_meta)}</td>
+                        <td>
+                            <div class="progress-cell">
+                                <span class="progress-text">${row.realizado || '0%'}</span>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: ${progressWidth}%;"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item-right">
-                            <span class="item-val-green">${formatCurrency(row.recebido)}</span>
-                            <span class="item-val-slash">/</span>
-                            <span class="item-val-grey">${formatCurrency(row.provisionado)}</span>
-                        </div>
-                    </div>
+                        </td>
+                        <td>${formatCurrency(row.disponivel_ano)}</td>
+                        <td class="regional-col">${row.str_regional || '-'}</td>
+                    </tr>
                 `;
             });
 
-            listContainer.innerHTML = html;
+            tableBody.innerHTML = html;
         }
 
         document.addEventListener('DOMContentLoaded', loadData);
