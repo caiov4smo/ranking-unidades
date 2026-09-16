@@ -534,32 +534,48 @@
         }
         updateCurrentMonth();
 
-        // FORMATAR MOEDA COM R$
-        function formatCurrency(val) {
-            if (val === undefined || val === null || val === '') return 'R$ 0,00';
-            if (val.toString().includes('R$')) return val;
-            return 'R$ ' + val;
+        // CONVERTER VALOR BRASILEIRO PARA FLOAT
+        function parseBrFloat(str) {
+            if (str === undefined || str === null || str === '') return 0;
+            if (typeof str === 'number') return str;
+            let s = str.toString().replace(/R\$\s?/, '').replace('%', '').trim();
+            if (s.includes(',')) {
+                s = s.replace(/\./g, '').replace(',', '.');
+            } else if (s.includes('.')) {
+                let parts = s.split('.');
+                if (parts.length > 2 || parts[parts.length - 1].length === 3) {
+                    s = s.replace(/\./g, '');
+                }
+            }
+            let num = parseFloat(s);
+            return isNaN(num) ? 0 : num;
         }
 
-        // FORMATAR MOEDA SEM CENTAVOS
+        // FORMATAR MOEDA COM R$ E SEMPRE 2 CASAS DECIMAIS (PARA A LISTA)
+        function formatCurrency(val) {
+            if (val === undefined || val === null || val === '') return 'R$ 0,00';
+            let num = parseBrFloat(val);
+            return 'R$ ' + num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // FORMATAR MOEDA SEM CENTAVOS (EXCLUSIVO PARA OS COPOS)
         function formatCurrencyNoCents(val) {
             if (val === undefined || val === null || val === '') return 'R$ 0';
-            let num = Math.round(val);
+            let num = Math.round(parseBrFloat(val));
             return 'R$ ' + num.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+        }
+
+        // FORMATAR PORCENTAGEM COM SEMPRE 2 CASAS DECIMAIS (PARA A LISTA)
+        function formatPct(val) {
+            if (val === undefined || val === null || val === '') return '0,00%';
+            let num = parseBrFloat(val);
+            return num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
         }
 
         // LIMPAR PREFIXO V4 COMPANY
         function cleanUnitName(name) {
             if (!name) return '';
             return name.replace(/^V4\s+Company\s+/i, '').trim();
-        }
-
-        // CONVERTER VALOR BRASILEIRO PARA FLOAT
-        function parseBrFloat(str) {
-            if (!str) return 0;
-            let clean = str.toString().replace(/R\$\s?/, '').replace(/\./g, '').replace(',', '.').replace('%', '').trim();
-            let num = parseFloat(clean);
-            return isNaN(num) ? 0 : num;
         }
 
         // ALTERAR MODO DE SEMANA (TOGGLE)
@@ -582,10 +598,8 @@
                     targetWeekNum = Math.max(1, semanaCorteNum - 1);
                 }
 
-                // 1. Meta Semana Acumulada x Meta da Própria Semana (desacumulada)
+                // 1. Meta Semana Acumulada
                 const metaSemanaAcum = parseBrFloat(item['semana_' + targetWeekNum] || '0');
-                const metaSemanaPrevAcum = targetWeekNum > 1 ? parseBrFloat(item['semana_' + (targetWeekNum - 1)] || '0') : 0;
-                const metaPropriaSemana = Math.max(0, metaSemanaAcum - metaSemanaPrevAcum);
 
                 item.metaSemanaStr = metaSemanaAcum.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 item.metaSemanaNum = metaSemanaAcum;
@@ -828,7 +842,7 @@
             container.innerHTML = html;
         }
 
-        // RENDERIZAR TABELA
+        // RENDERIZAR TABELA DA LISTA (SEMPRE COM 2 CASAS DECIMAIS)
         function renderTable(data) {
             const tableBody = document.getElementById('table-body');
             let html = '';
@@ -861,19 +875,19 @@
                     <tr class="${rankRowClass}">
                         <td class="rank-col">${rankDisplay}</td>
                         <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
-                        <td>${formatCurrency(row.provisionado)}</td>
-                        <td>${formatCurrency(row.metaSemanaStr)}</td>
-                        <td>${formatCurrency(row.recebidoStr)}</td>
-                        <td>${formatCurrency(row.deltaSemanaStr)}</td>
+                        <td>${formatCurrency(row.provisionadoNum)}</td>
+                        <td>${formatCurrency(row.metaSemanaNum)}</td>
+                        <td>${formatCurrency(row.recebidoNum)}</td>
+                        <td>${formatCurrency(row.deltaSemanaNum)}</td>
                         <td>
                             <div class="progress-cell">
-                                <span class="progress-text">${row.realizadoStr || '0%'}</span>
+                                <span class="progress-text">${formatPct(row.realizadoNum)}</span>
                                 <div class="progress-bar-bg">
                                     <div class="progress-bar-fill" style="width: ${progressWidth}%;"></div>
                                 </div>
                             </div>
                         </td>
-                        <td>${formatCurrency(row.disponivel_ano)}</td>
+                        <td>${formatCurrency(row.disponivelAnoNum)}</td>
                         <td class="regional-col">${row.str_regional || '-'}</td>
                     </tr>
                 `;
