@@ -6,7 +6,7 @@
     <title>Dashboard Cash SC - V4 Company</title>
     <!-- Fonte Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://me.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=ruUXGmQ9LjC4_epqkZKRhrIPOreY1pNax-Eho1gUWRc1Ov9PzHBqB1cXNHzyTvRWWPgKwLLP3lpeIUavKhIB4s3wYS8sSFKzJ9IJE3AYMlRL5Gp7rSbq9ouxNCJgiWIY8HU7KEv6z8lCF5YkPIgLrPcqmr8Oxed5O_OazDwgoY0OASE0sh4WZLQe2YGmVny-IoVtnjWUU6GaBk7C8iytIB7G4HjuutPNY-_UhvT6slEF5OH6doRQ57jFKCYfkPgklRqwKyHNk6Y-wu_Ad4OtUQoc96M3YIZ6hRaj_xi0jLpDsKdqFnmDlWMJNzuk9Z59Bf_Qb6MG6l0wfwGcHMWP5A" charset="UTF-8"></script><style>
+    <style>
         :root {
             --bg-color: #0a0a0a;
             --panel-bg: #141414;
@@ -55,15 +55,11 @@
             gap: 1.5rem;
         }
 
-        .v4-badge {
-            background-color: var(--v4-red);
-            color: #fff;
-            font-weight: 900;
-            font-size: 1.4rem;
-            padding: 0.3rem 0.8rem;
+        .v4-logo {
+            height: 45px;
+            width: auto;
             border-radius: 4px;
-            letter-spacing: 1px;
-            box-shadow: 0 0 12px var(--v4-red-glow);
+            object-fit: contain;
         }
 
         .header-title h1 {
@@ -191,14 +187,27 @@
         .table-section {
             flex: 1;
             padding: 0 2rem 1.5rem 2rem;
-            overflow: hidden;
+            overflow-y: auto;
             position: relative;
+        }
+
+        /* Custom Scrollbar */
+        .table-section::-webkit-scrollbar {
+            width: 8px;
+        }
+        .table-section::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        .table-section::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+        .table-section::-webkit-scrollbar-thumb:hover {
+            background: var(--v4-red);
         }
 
         .table-wrapper {
             width: 100%;
-            height: 100%;
-            position: relative;
         }
 
         table {
@@ -232,29 +241,9 @@
             color: #ffffff;
         }
 
-        th:nth-child(1), th:nth-child(2), th:nth-child(3) { text-align: left; }
-        th:nth-child(3) { width: 25%; }
-
-        tbody {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        
-        .table-wrapper table {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .table-wrapper thead, .table-wrapper tbody tr {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        tbody:hover {
-            animation-play-state: paused;
-        }
+        /* Alinhamento especifico das colunas */
+        th:nth-child(1), th:nth-child(2) { text-align: left; }
+        th:nth-child(2) { width: 28%; } /* Unidade */
 
         tr {
             background-color: var(--panel-bg);
@@ -277,18 +266,20 @@
             text-overflow: ellipsis;
         }
 
-        td:nth-child(1), td:nth-child(2), td:nth-child(3) { text-align: left; }
+        td:nth-child(1), td:nth-child(2) { text-align: left; }
 
         td.rank-col { 
             font-weight: 800; 
             color: var(--v4-red); 
             text-align: center;
             font-size: 1.1rem;
+            width: 60px;
         }
 
         td.regional-col {
             font-weight: 700;
             color: #a0a0a0;
+            text-align: center;
         }
         
         td.unit-col {
@@ -312,7 +303,7 @@
         }
 
         .progress-bar-bg {
-            width: 90px;
+            width: 80px;
             height: 8px;
             background-color: var(--bar-bg);
             border-radius: 2px;
@@ -325,12 +316,6 @@
             border-radius: 2px;
             box-shadow: 0 0 8px var(--v4-red-glow);
         }
-
-        /* Scroll Infinito */
-        @keyframes autoScroll {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(calc(-100% + 450px)); }
-        }
     </style>
 </head>
 <body>
@@ -338,7 +323,7 @@
     <!-- CABEÇALHO -->
     <header>
         <div class="header-brand">
-            <div class="v4-badge">V4</div>
+            <img src="logo-v4.jpg" alt="V4 Company" class="v4-logo">
             <div class="header-title">
                 <h1>Cash SC</h1>
                 <span>Ranking de Alta Performance</span>
@@ -367,14 +352,14 @@
                 <thead>
                     <tr>
                         <th><span>Rank</span></th>
-                        <th><span>Regional</span></th>
                         <th><span>Unidade</span></th>
-                        <th><span>Recebido</span></th>
-                        <th><span>Realizado</span></th>
-                        <th><span>Semana 3</span></th>
                         <th><span>Provisionado</span></th>
-                        <th><span>Disponível Ano</span></th>
+                        <th><span>Semana 3</span></th>
+                        <th><span>Recebido</span></th>
                         <th><span>Faltante Meta</span></th>
+                        <th><span>Realizado</span></th>
+                        <th><span>Disponível Ano</span></th>
+                        <th><span>Regional</span></th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
@@ -481,36 +466,28 @@
             podiumContainer.innerHTML = html;
         }
 
-        // RENDERIZAR TABELA DE RANKING
+        // RENDERIZAR TABELA DE RANKING (SEM ANIMAÇÃO / ROLAGEM AUTOMÁTICA)
         function renderTable(data) {
             const tableBody = document.getElementById('table-body');
             let html = '';
 
             if (data.length === 0) {
                 tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade encontrada para esta regional.</td></tr>';
-                tableBody.style.animation = 'none';
                 return;
             }
 
-            let dataToRender = [];
-            if (data.length < 8) {
-                tableBody.style.animation = 'none';
-                dataToRender = [...data];
-            } else {
-                tableBody.style.animation = 'autoScroll 30s linear infinite';
-                dataToRender = [...data, ...data];
-            }
-
-            dataToRender.forEach((row, index) => {
-                const realRank = (index % data.length) + 1; 
+            data.forEach((row, index) => {
+                const realRank = index + 1; 
                 const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
                 
                 html += `
                     <tr>
                         <td class="rank-col">${realRank}º</td>
-                        <td class="regional-col">${row.str_regional || '-'}</td>
                         <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
+                        <td>${row.provisionado || '0'}</td>
+                        <td>${row.semana_3 || '0'}</td>
                         <td>${row.recebido || '0'}</td>
+                        <td>${row.valor_faltante_meta || '0'}</td>
                         <td>
                             <div class="progress-cell">
                                 <span class="progress-text">${row.realizado || '0%'}</span>
@@ -519,10 +496,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td>${row.semana_3 || '0'}</td>
-                        <td>${row.provisionado || '0'}</td>
                         <td>${row.disponivel_ano || '0'}</td>
-                        <td>${row.valor_faltante_meta || '0'}</td>
+                        <td class="regional-col">${row.str_regional || '-'}</td>
                     </tr>
                 `;
             });
