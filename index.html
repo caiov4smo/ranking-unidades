@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Cash SC - V4 Company</title>
+    <title>Ranking Unidades - V4 Company</title>
     <!-- Fonte Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -70,14 +70,6 @@
             letter-spacing: 1px;
         }
 
-        .header-title span {
-            font-size: 0.9rem;
-            color: var(--v4-red);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
         .header-controls {
             display: flex;
             align-items: center;
@@ -103,21 +95,12 @@
             border-color: #ff1a26;
         }
 
-        .header-date {
-            text-align: right;
-        }
-
-        .header-date #time {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #fff;
+        .header-month {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .header-date #date {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: capitalize;
         }
 
         /* PÓDIO TOP 3 */
@@ -325,8 +308,7 @@
         <div class="header-brand">
             <img src="logo-v4.jpg" alt="V4 Company" class="v4-logo">
             <div class="header-title">
-                <h1>Cash SC</h1>
-                <span>Ranking de Alta Performance</span>
+                <h1>Ranking Unidades</h1>
             </div>
         </div>
         <div class="header-controls">
@@ -334,9 +316,8 @@
             <select id="regional-filter" class="v4-select">
                 <option value="all">Todas as Regionais</option>
             </select>
-            <div class="header-date">
-                <div id="time">00:00:00</div>
-                <div id="date">Carregando data...</div>
+            <div class="header-month" id="current-month">
+                <!-- SETEMBRO DE 2026 -->
             </div>
         </div>
     </header>
@@ -356,7 +337,7 @@
                         <th><span>Meta Mês</span></th>
                         <th><span>Meta Semana</span></th>
                         <th><span>Recebido</span></th>
-                        <th><span>Faltante Meta</span></th>
+                        <th><span>Delta Semana</span></th>
                         <th><span>Realizado</span></th>
                         <th><span>Disponível Ano</span></th>
                         <th><span>Regional</span></th>
@@ -371,25 +352,30 @@
     <script>
         let allData = [];
 
-        // RELÓGIO E DATA DINÂMICA
-        function updateDateTime() {
+        // ATUALIZAR MÊS VIGENTE (EX: SETEMBRO DE 2026)
+        function updateCurrentMonth() {
             const now = new Date();
-            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('time').textContent = now.toLocaleTimeString('pt-BR', timeOptions);
-            
-            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            let dateStr = now.toLocaleDateString('pt-BR', dateOptions);
-            document.getElementById('date').textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+            const monthNames = [
+                "JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO",
+                "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
+            ];
+            const monthStr = monthNames[now.getMonth()];
+            const yearStr = now.getFullYear();
+            document.getElementById('current-month').textContent = `${monthStr} DE ${yearStr}`;
         }
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
+        updateCurrentMonth();
 
         // FORMATAR MOEDA COM R$
         function formatCurrency(val) {
             if (val === undefined || val === null || val === '') return 'R$ 0,00';
-            // Se o valor já contém R$, retorna direto para não duplicar
             if (val.toString().includes('R$')) return val;
             return 'R$ ' + val;
+        }
+
+        // LIMPAR PREFIXO V4 COMPANY
+        function cleanUnitName(name) {
+            if (!name) return '';
+            return name.replace(/^V4\s+Company\s+/i, '').trim();
         }
 
         // CARREGAMENTO DO JSON
@@ -406,6 +392,7 @@
 
                     return {
                         ...item,
+                        unidade: cleanUnitName(item.unidade),
                         realizadoNum: realizadoNum
                     };
                 });
