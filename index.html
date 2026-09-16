@@ -513,7 +513,7 @@
         // CARREGAMENTO DO JSON
         async function loadData() {
             try {
-                const response = await fetch('dados.json.json');
+                const response = await fetch('dados.json');
                 if (!response.ok) throw new Error('Falha ao carregar o arquivo JSON.');
                 const data = await response.json();
                 
@@ -532,7 +532,7 @@
                 applyFilterAndSort();
             } catch (error) {
                 console.error("Erro:", error);
-                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json.json' está na mesma pasta.</td></tr>`;
+                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</td></tr>`;
             }
         }
 
