@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpg" href="./logo-v4.jpg">
     <title>Ranking Unidades - V4 Company</title>
     <!-- Fonte Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -18,7 +17,6 @@
             --v4-red-dark: #80050b;
             --v4-red-glow: rgba(229, 9, 20, 0.5);
             --bar-bg: #2a2a2a;
-            --gold: #FFD700;
             --silver: #E0E0E0;
             --bronze: #CD7F32;
             --green-money: #00E676;
@@ -40,8 +38,12 @@
             overflow: hidden;
         }
 
-        /* HEADER V4 STYLE */
+        /* HEADER FIXADO */
         header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-shrink: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,11 +67,41 @@
             gap: 1.5rem;
         }
 
+        /* TOGGLE DE SEMANA */
+        .week-toggle-container {
+            display: flex;
+            background-color: #1a1a1a;
+            border: 1px solid var(--v4-red);
+            border-radius: 6px;
+            padding: 2px;
+            box-shadow: 0 0 5px rgba(229, 9, 20, 0.1);
+        }
+
+        .week-btn {
+            background: transparent;
+            color: #8c8c8c;
+            border: none;
+            padding: 0.5rem 0.9rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .week-btn.active {
+            background: var(--v4-red);
+            color: #ffffff;
+            box-shadow: 0 0 8px var(--v4-red-glow);
+        }
+
+        /* SELECT DE REGIONAL COM SETA AJUSTADA */
         .v4-select {
             background-color: #1a1a1a;
             color: #ffffff;
             border: 1px solid var(--v4-red);
-            padding: 0.6rem 1.2rem;
+            padding: 0.6rem 2.5rem 0.6rem 1.2rem;
             border-radius: 6px;
             font-size: 0.95rem;
             font-weight: 600;
@@ -77,6 +109,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 0 5px rgba(229, 9, 20, 0.1);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23ffffff' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
         }
 
         .v4-select:focus, .v4-select:hover {
@@ -139,7 +178,7 @@
         }
 
         th {
-            padding: 0.6rem 1rem;
+            padding: 0.6rem 0.8rem;
             text-align: right;
             font-size: 0.8rem;
             text-transform: uppercase;
@@ -148,12 +187,37 @@
             white-space: nowrap;
         }
 
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
         th span {
             background-color: #171717;
             padding: 0.4rem 0.8rem;
             border-radius: 4px;
             border-bottom: 2px solid var(--v4-red);
             color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s;
+        }
+
+        th.sortable:hover span {
+            background-color: #262626;
+            border-bottom-color: #ff1a26;
+        }
+
+        .sort-icon {
+            font-style: normal;
+            font-size: 0.75rem;
+            opacity: 0.4;
+        }
+
+        th.active-sort .sort-icon {
+            opacity: 1;
+            color: var(--v4-red);
         }
 
         th:nth-child(1), th:nth-child(2) { text-align: left; }
@@ -216,7 +280,6 @@
         }
 
         /* SUPER DESTAQUES - TOP 3 */
-        /* 1º LUGAR (VERMELHO V4 PREMIUM) */
         tr.top-rank-1 {
             background: linear-gradient(90deg, rgba(229, 9, 20, 0.22) 0%, rgba(24, 12, 14, 0.95) 100%) !important;
             outline: 2px solid var(--v4-red);
@@ -239,7 +302,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* 2º LUGAR (BRANCO / PRATA) */
         tr.top-rank-2 {
             background: linear-gradient(90deg, rgba(224, 224, 224, 0.15) 0%, rgba(20, 20, 20, 0.95) 100%) !important;
             outline: 2px solid var(--silver);
@@ -261,7 +323,6 @@
             font-weight: 800;
         }
 
-        /* 3º LUGAR (BRONZE) */
         tr.top-rank-3 {
             background: linear-gradient(90deg, rgba(205, 127, 50, 0.18) 0%, rgba(20, 18, 14, 0.95) 100%) !important;
             outline: 2px solid var(--bronze);
@@ -316,16 +377,23 @@
 </head>
 <body>
 
-    <!-- CABEÇALHO DA PÁGINA -->
+    <!-- CABEÇALHO DA PÁGINA (FIXADO) -->
     <header>
         <div class="header-brand">
             <h1>Ranking Unidades</h1>
         </div>
         <div class="header-controls">
-            <!-- Filtro por Regional -->
+            <!-- TOGGLE DE SEMANA -->
+            <div class="week-toggle-container">
+                <button id="btn-current-week" class="week-btn active" onclick="setWeekMode('current')">Semana Atual</button>
+                <button id="btn-prev-week" class="week-btn" onclick="setWeekMode('prev')">Semana Anterior</button>
+            </div>
+
+            <!-- FILTRO DE REGIONAL COM SETA AJUSTADA -->
             <select id="regional-filter" class="v4-select">
                 <option value="all">Todas as Regionais</option>
             </select>
+
             <div class="header-month" id="current-month">
                 <!-- SETEMBRO DE 2026 -->
             </div>
@@ -333,21 +401,21 @@
         </div>
     </header>
 
-    <!-- TABELA DE DADOS (1º AO ÚLTIMO COLOCADO COM SUPER DESTAQUE) -->
+    <!-- TABELA DE DADOS -->
     <section class="table-section">
         <div class="table-wrapper">
             <table>
                 <thead>
                     <tr>
-                        <th><span>Rank</span></th>
-                        <th><span>Unidade</span></th>
-                        <th><span>Meta Mês</span></th>
-                        <th><span>Meta Semana</span></th>
-                        <th><span>Recebido</span></th>
-                        <th><span>Delta Semana</span></th>
-                        <th><span>Realizado</span></th>
-                        <th><span>Disponível Ano</span></th>
-                        <th><span>Regional</span></th>
+                        <th class="sortable" data-col="realizadoNum"><span>Rank <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="unidade"><span>Unidade <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="provisionadoNum"><span>Meta Mês <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="metaSemanaNum"><span>Meta Semana <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="recebidoNum"><span>Recebido <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="deltaSemanaNum"><span>Delta Semana <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="realizadoNum"><span>Realizado <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="disponivelAnoNum"><span>Disponível Ano <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="str_regional"><span>Regional <i class="sort-icon">↕</i></span></th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
@@ -358,6 +426,9 @@
 
     <script>
         let allData = [];
+        let weekMode = 'current'; // 'current' ou 'prev'
+        let currentSortCol = 'realizadoNum';
+        let currentSortDir = 'desc';
 
         // ATUALIZAR MÊS VIGENTE (EX: SETEMBRO DE 2026)
         function updateCurrentMonth() {
@@ -385,6 +456,41 @@
             return name.replace(/^V4\s+Company\s+/i, '').trim();
         }
 
+        // CONVERTER VALOR BRASILEIRO PARA FLOAT
+        function parseBrFloat(str) {
+            if (!str) return 0;
+            let clean = str.toString().replace(/R\$\s?/, '').replace(/\./g, '').replace(',', '.').replace('%', '').trim();
+            let num = parseFloat(clean);
+            return isNaN(num) ? 0 : num;
+        }
+
+        // ALTERAR MODO DE SEMANA (TOGGLE)
+        function setWeekMode(mode) {
+            weekMode = mode;
+            document.getElementById('btn-current-week').classList.toggle('active', mode === 'current');
+            document.getElementById('btn-prev-week').classList.toggle('active', mode === 'prev');
+            
+            // Recalcula campos dependentes da semana
+            recalculateData();
+            applyFilterAndSort();
+        }
+
+        // RECALCULAR DADOS CONFORME A SEMANA
+        function recalculateData() {
+            allData.forEach(item => {
+                const semanaCorteNum = parseInt(item.semana_corte || '3', 10);
+                let targetWeekNum = semanaCorteNum;
+
+                if (weekMode === 'prev') {
+                    targetWeekNum = Math.max(1, semanaCorteNum - 1);
+                }
+
+                const metaSemanaVal = item['semana_' + targetWeekNum] || '0';
+                item.metaSemanaStr = metaSemanaVal;
+                item.metaSemanaNum = parseBrFloat(metaSemanaVal);
+            });
+        }
+
         // CARREGAMENTO DO JSON
         async function loadData() {
             try {
@@ -400,12 +506,18 @@
                     return {
                         ...item,
                         unidade: cleanUnitName(item.unidade),
-                        realizadoNum: realizadoNum
+                        realizadoNum: realizadoNum,
+                        provisionadoNum: parseBrFloat(item.provisionado),
+                        recebidoNum: parseBrFloat(item.recebido),
+                        deltaSemanaNum: parseBrFloat(item.valor_faltante_meta),
+                        disponivelAnoNum: parseBrFloat(item.disponivel_ano)
                     };
                 });
 
+                recalculateData();
                 populateFilter(allData);
-                renderDashboard(allData);
+                setupSortHeaders();
+                applyFilterAndSort();
             } catch (error) {
                 console.error("Erro:", error);
                 document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</td></tr>`;
@@ -424,42 +536,83 @@
                 filter.appendChild(option);
             });
 
-            filter.addEventListener('change', (e) => {
-                const selected = e.target.value;
-                if (selected === 'all') {
-                    renderDashboard(allData);
-                } else {
-                    const filtered = allData.filter(item => item.str_regional === selected);
-                    renderDashboard(filtered);
-                }
+            filter.addEventListener('change', () => {
+                applyFilterAndSort();
             });
         }
 
-        // RENDERIZAR DASHBOARD
-        function renderDashboard(data) {
-            const sortedData = [...data].sort((a, b) => b.realizadoNum - a.realizadoNum);
-            renderTable(sortedData);
+        // CONFIGURAR CLIQUE NOS CABEÇALHOS PARA ORDENAÇÃO
+        function setupSortHeaders() {
+            document.querySelectorAll('th.sortable').forEach(th => {
+                th.addEventListener('click', () => {
+                    const col = th.getAttribute('data-col');
+                    if (currentSortCol === col) {
+                        currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        currentSortCol = col;
+                        currentSortDir = 'desc'; // Padrão desc ao trocar de coluna
+                    }
+                    applyFilterAndSort();
+                });
+            });
         }
 
-        // RENDERIZAR TABELA DE RANKING (COM BADGES E CONTORNOS DE DESTAQUE NO TOP 3)
+        // APLICAR FILTRAGEM E ORDENAÇÃO
+        function applyFilterAndSort() {
+            const selectedReg = document.getElementById('regional-filter').value;
+            let filtered = allData;
+
+            if (selectedReg !== 'all') {
+                filtered = allData.filter(item => item.str_regional === selectedReg);
+            }
+
+            // Ordenar
+            const sorted = [...filtered].sort((a, b) => {
+                let valA = a[currentSortCol];
+                let valB = b[currentSortCol];
+
+                if (typeof valA === 'string') {
+                    valA = valA.toLowerCase();
+                    valB = (valB || '').toLowerCase();
+                    return currentSortDir === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                }
+
+                valA = valA || 0;
+                valB = valB || 0;
+                return currentSortDir === 'asc' ? valA - valB : valB - valA;
+            });
+
+            // Atualiza indicadores visuais dos cabeçalhos
+            document.querySelectorAll('th.sortable').forEach(th => {
+                const col = th.getAttribute('data-col');
+                const icon = th.querySelector('.sort-icon');
+                if (col === currentSortCol) {
+                    th.classList.add('active-sort');
+                    icon.textContent = currentSortDir === 'asc' ? '▲' : '▼';
+                } else {
+                    th.classList.remove('active-sort');
+                    icon.textContent = '↕';
+                }
+            });
+
+            renderTable(sorted);
+        }
+
+        // RENDERIZAR TABELA
         function renderTable(data) {
             const tableBody = document.getElementById('table-body');
             let html = '';
 
             if (data.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade encontrada para esta regional.</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade encontrada para os filtros selecionados.</td></tr>';
                 return;
             }
 
             data.forEach((row, index) => {
-                const realRank = index + 1; // Começa no 1º
+                const realRank = index + 1; // Posição atual na lista filtrada
                 const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
                 
-                // Lógica de puxar a semana correspondente à coluna 'semana_corte'
-                const semanaCorteStr = row.semana_corte ? row.semana_corte.toString().trim() : '3';
-                const metaSemanaVal = row['semana_' + semanaCorteStr] || '0';
-                
-                // Estruturação do Rank com Badge de Destaque
+                // Estruturação do Rank com Badge de Destaque para o Top 3
                 let rankRowClass = '';
                 let rankDisplay = `${realRank}º`;
 
@@ -479,7 +632,7 @@
                         <td class="rank-col">${rankDisplay}</td>
                         <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
                         <td>${formatCurrency(row.provisionado)}</td>
-                        <td>${formatCurrency(metaSemanaVal)}</td>
+                        <td>${formatCurrency(row.metaSemanaStr)}</td>
                         <td>${formatCurrency(row.recebido)}</td>
                         <td>${formatCurrency(row.valor_faltante_meta)}</td>
                         <td>
