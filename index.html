@@ -475,7 +475,7 @@
             applyFilterAndSort();
         }
 
-        // RECALCULAR DADOS CONFORME A SEMANA
+        // RECALCULAR DADOS CONFORME A SEMANA SELECIONADA
         function recalculateData() {
             allData.forEach(item => {
                 const semanaCorteNum = parseInt(item.semana_corte || '3', 10);
@@ -485,31 +485,43 @@
                     targetWeekNum = Math.max(1, semanaCorteNum - 1);
                 }
 
+                // 1. Meta Semana
                 const metaSemanaVal = item['semana_' + targetWeekNum] || '0';
                 item.metaSemanaStr = metaSemanaVal;
                 item.metaSemanaNum = parseBrFloat(metaSemanaVal);
+
+                // 2. Recebido
+                const recebidoKey = 'recebido_ate_sem' + targetWeekNum;
+                const recebidoVal = item[recebidoKey] !== undefined ? item[recebidoKey] : (item.recebido || '0');
+                item.recebidoStr = recebidoVal;
+                item.recebidoNum = parseBrFloat(recebidoVal);
+
+                // 3. Realizado %
+                const realizadoKey = 'realizado_sem' + targetWeekNum;
+                const realizadoVal = item[realizadoKey] !== undefined ? item[realizadoKey] : (item.realizado || '0%');
+                item.realizadoStr = realizadoVal;
+                item.realizadoNum = parseBrFloat(realizadoVal);
+
+                // 4. Delta Semana (Faltante Meta da Semana): Max(0, MetaSemana - RecebidoAtéAquelePonto)
+                let deltaNum = item.metaSemanaNum - item.recebidoNum;
+                if (deltaNum < 0) deltaNum = 0;
+                item.deltaSemanaNum = deltaNum;
+                item.deltaSemanaStr = deltaNum.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             });
         }
 
         // CARREGAMENTO DO JSON
         async function loadData() {
             try {
-                const response = await fetch('dados.json');
+                const response = await fetch('dados.json.json');
                 if (!response.ok) throw new Error('Falha ao carregar o arquivo JSON.');
                 const data = await response.json();
                 
                 allData = data.map(item => {
-                    let realizadoLimpo = (item.realizado || '0').replace('%', '').replace(',', '.');
-                    let realizadoNum = parseFloat(realizadoLimpo);
-                    if (isNaN(realizadoNum)) realizadoNum = 0;
-
                     return {
                         ...item,
                         unidade: cleanUnitName(item.unidade),
-                        realizadoNum: realizadoNum,
                         provisionadoNum: parseBrFloat(item.provisionado),
-                        recebidoNum: parseBrFloat(item.recebido),
-                        deltaSemanaNum: parseBrFloat(item.valor_faltante_meta),
                         disponivelAnoNum: parseBrFloat(item.disponivel_ano)
                     };
                 });
@@ -520,7 +532,7 @@
                 applyFilterAndSort();
             } catch (error) {
                 console.error("Erro:", error);
-                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</td></tr>`;
+                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json.json' está na mesma pasta.</td></tr>`;
             }
         }
 
@@ -633,11 +645,11 @@
                         <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
                         <td>${formatCurrency(row.provisionado)}</td>
                         <td>${formatCurrency(row.metaSemanaStr)}</td>
-                        <td>${formatCurrency(row.recebido)}</td>
-                        <td>${formatCurrency(row.valor_faltante_meta)}</td>
+                        <td>${formatCurrency(row.recebidoStr)}</td>
+                        <td>${formatCurrency(row.deltaSemanaStr)}</td>
                         <td>
                             <div class="progress-cell">
-                                <span class="progress-text">${row.realizado || '0%'}</span>
+                                <span class="progress-text">${row.realizadoStr || '0%'}</span>
                                 <div class="progress-bar-bg">
                                     <div class="progress-bar-fill" style="width: ${progressWidth}%;"></div>
                                 </div>
