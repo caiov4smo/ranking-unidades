@@ -311,11 +311,19 @@
             background-color: var(--panel-bg);
             transition: all 0.2s ease;
             border-radius: 6px;
+            cursor: pointer;
         }
 
         tr:hover {
             background-color: #1a1a1a;
             transform: scale(1.002);
+        }
+
+        /* LINHA SELECIONADA NA TABELA */
+        tr.selected-row {
+            outline: 2px solid var(--yellow-gold) !important;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.15) 0%, rgba(30, 28, 10, 0.95) 100%) !important;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.35) !important;
         }
 
         td {
@@ -365,7 +373,7 @@
 
         /* SUPER DESTAQUES - TOP 3 */
         tr.top-rank-1 {
-            background: linear-gradient(90deg, rgba(229, 9, 20, 0.22) 0%, rgba(24, 12, 14, 0.95) 100%) !important;
+            background: linear-gradient(90deg, rgba(229, 9, 20, 0.22) 0%, rgba(24, 12, 14, 0.95) 100%);
             outline: 2px solid var(--v4-red);
             box-shadow: 0 0 18px var(--v4-red-glow);
         }
@@ -387,7 +395,7 @@
         }
 
         tr.top-rank-2 {
-            background: linear-gradient(90deg, rgba(224, 224, 224, 0.15) 0%, rgba(20, 20, 20, 0.95) 100%) !important;
+            background: linear-gradient(90deg, rgba(224, 224, 224, 0.15) 0%, rgba(20, 20, 20, 0.95) 100%);
             outline: 2px solid var(--silver);
             box-shadow: 0 0 12px rgba(224, 224, 224, 0.2);
         }
@@ -408,7 +416,7 @@
         }
 
         tr.top-rank-3 {
-            background: linear-gradient(90deg, rgba(205, 127, 50, 0.18) 0%, rgba(20, 18, 14, 0.95) 100%) !important;
+            background: linear-gradient(90deg, rgba(205, 127, 50, 0.18) 0%, rgba(20, 18, 14, 0.95) 100%);
             outline: 2px solid var(--bronze);
             box-shadow: 0 0 12px rgba(205, 127, 50, 0.25);
         }
@@ -520,6 +528,7 @@
         let weekMode = 'current'; // 'current' ou 'prev'
         let currentSortCol = 'realizadoNum';
         let currentSortDir = 'desc';
+        let selectedUnitName = null; // Unidade atualmente selecionada ao clicar na linha
 
         // ATUALIZAR MÊS VIGENTE (EX: SETEMBRO DE 2026)
         function updateCurrentMonth() {
@@ -643,6 +652,7 @@
                 recalculateData();
                 populateFilter(allData);
                 setupSortHeaders();
+                setupRowSelection();
                 applyFilterAndSort();
             } catch (error) {
                 console.error("Erro:", error);
@@ -683,6 +693,27 @@
             });
         }
 
+        // CONFIGURAR CLIQUE NAS LINHAS DA TABELA (SELEÇÃO DA UNIDADE)
+        function setupRowSelection() {
+            const tableBody = document.getElementById('table-body');
+            tableBody.addEventListener('click', (e) => {
+                const tr = e.target.closest('tr');
+                if (!tr) return;
+
+                const unitName = tr.getAttribute('data-unit');
+                if (!unitName) return;
+
+                // Se clicou na unidade ja selecionada, deseleciona
+                if (selectedUnitName === unitName) {
+                    selectedUnitName = null;
+                } else {
+                    selectedUnitName = unitName;
+                }
+
+                applyFilterAndSort();
+            });
+        }
+
         // APLICAR FILTRAGEM, RECALCULAR COPOS E ORDENAR LISTA
         function applyFilterAndSort() {
             const selectedReg = document.getElementById('regional-filter').value;
@@ -692,13 +723,32 @@
 
             if (selectedReg !== 'all') {
                 filtered = allData.filter(item => item.str_regional === selectedReg);
+            }
+
+            // Verificar se a unidade selecionada ainda esta nos dados filtrados
+            if (selectedUnitName) {
+                const unitExists = filtered.some(item => item.unidade === selectedUnitName);
+                if (!unitExists) {
+                    selectedUnitName = null;
+                }
+            }
+
+            // Atualizar Titulo do Cabeçalho
+            if (selectedUnitName) {
+                mainTitleEl.textContent = `METAS ${selectedUnitName}`;
+            } else if (selectedReg !== 'all') {
                 mainTitleEl.textContent = `RANKING ${selectedReg}`;
             } else {
                 mainTitleEl.textContent = 'RANKING UNIDADES';
             }
 
-            // Renderizar secao dos copos para os dados filtrados no momento
-            renderGlasses(filtered);
+            // Renderizar secao dos copos para a unidade selecionada OU para o grupo filtrado
+            if (selectedUnitName) {
+                const unitData = allData.filter(item => item.unidade === selectedUnitName);
+                renderGlasses(unitData);
+            } else {
+                renderGlasses(filtered);
+            }
 
             // Ordenar lista
             const sorted = [...filtered].sort((a, b) => {
@@ -738,7 +788,7 @@
             if (!container) return;
 
             if (data.length === 0) {
-                container.innerHTML = '<div style="text-align:center; color:var(--text-muted); width:100%;">Nenhum dado encontrado para esta regional.</div>';
+                container.innerHTML = '<div style="text-align:center; color:var(--text-muted); width:100%;">Nenhum dado encontrado para a exibição dos copos.</div>';
                 return;
             }
 
@@ -871,8 +921,11 @@
                     rankDisplay = `<span class="rank-badge">${realRank}º</span>`;
                 }
 
+                // Classe de Seleção ao Clicar na Linha
+                const selectedClass = (row.unidade === selectedUnitName) ? 'selected-row' : '';
+
                 html += `
-                    <tr class="${rankRowClass}">
+                    <tr class="${rankRowClass} ${selectedClass}" data-unit="${row.unidade}">
                         <td class="rank-col">${rankDisplay}</td>
                         <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
                         <td>${formatCurrency(row.provisionadoNum)}</td>
