@@ -20,6 +20,7 @@
             --silver: #E0E0E0;
             --bronze: #CD7F32;
             --green-money: #00E676;
+            --yellow-gold: #FFD700;
         }
 
         * {
@@ -138,10 +139,93 @@
             border-radius: 2px;
         }
 
+        /* SEÇÃO DOS COPOS (PROGRESSO DAS SEMANAS) */
+        .glasses-section {
+            padding: 1.2rem 2rem 0.5rem 2rem;
+            flex-shrink: 0;
+        }
+
+        .glasses-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1.2rem;
+            background-color: var(--panel-bg);
+            padding: 1.2rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 230px;
+        }
+
+        .glass-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .glass-top-realizado {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--green-money);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .glass-outer {
+            width: 100%;
+            max-width: 130px;
+            background-color: #161616;
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .glass-inner {
+            width: 100%;
+            transition: height 0.5s ease;
+        }
+
+        /* TEXTO DA PORCENTAGEM DENTRO DO COPO */
+        .glass-pct-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .glass-week-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .glass-bottom-meta {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
         /* TABELA DE DADOS */
         .table-section {
             flex: 1;
-            padding: 1.5rem 2rem 1.5rem 2rem;
+            padding: 1rem 2rem 1.5rem 2rem;
             overflow-y: auto;
             position: relative;
         }
@@ -380,7 +464,7 @@
     <!-- CABEÇALHO DA PÁGINA (FIXADO) -->
     <header>
         <div class="header-brand">
-            <h1>Ranking Unidades</h1>
+            <h1 id="page-main-title">Ranking Unidades</h1>
         </div>
         <div class="header-controls">
             <!-- TOGGLE DE SEMANA -->
@@ -400,6 +484,13 @@
             <img src="logo-v4.jpg" alt="V4 Company" class="v4-logo-right">
         </div>
     </header>
+
+    <!-- SEÇÃO DOS COPOS (PROGRESSO DAS SEMANAS) -->
+    <section class="glasses-section">
+        <div class="glasses-container" id="glasses-container">
+            <!-- Renderizado dinamicamente via JS -->
+        </div>
+    </section>
 
     <!-- TABELA DE DADOS -->
     <section class="table-section">
@@ -450,6 +541,13 @@
             return 'R$ ' + val;
         }
 
+        // FORMATAR MOEDA SEM CENTAVOS
+        function formatCurrencyNoCents(val) {
+            if (val === undefined || val === null || val === '') return 'R$ 0';
+            let num = Math.round(val);
+            return 'R$ ' + num.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+        }
+
         // LIMPAR PREFIXO V4 COMPANY
         function cleanUnitName(name) {
             if (!name) return '';
@@ -470,7 +568,6 @@
             document.getElementById('btn-current-week').classList.toggle('active', mode === 'current');
             document.getElementById('btn-prev-week').classList.toggle('active', mode === 'prev');
             
-            // Recalcula campos dependentes da semana
             recalculateData();
             applyFilterAndSort();
         }
@@ -485,10 +582,13 @@
                     targetWeekNum = Math.max(1, semanaCorteNum - 1);
                 }
 
-                // 1. Meta Semana
-                const metaSemanaVal = item['semana_' + targetWeekNum] || '0';
-                item.metaSemanaStr = metaSemanaVal;
-                item.metaSemanaNum = parseBrFloat(metaSemanaVal);
+                // 1. Meta Semana Acumulada x Meta da Própria Semana (desacumulada)
+                const metaSemanaAcum = parseBrFloat(item['semana_' + targetWeekNum] || '0');
+                const metaSemanaPrevAcum = targetWeekNum > 1 ? parseBrFloat(item['semana_' + (targetWeekNum - 1)] || '0') : 0;
+                const metaPropriaSemana = Math.max(0, metaSemanaAcum - metaSemanaPrevAcum);
+
+                item.metaSemanaStr = metaSemanaAcum.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                item.metaSemanaNum = metaSemanaAcum;
 
                 // 2. Recebido
                 const recebidoKey = 'recebido_ate_sem' + targetWeekNum;
@@ -562,23 +662,31 @@
                         currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
                     } else {
                         currentSortCol = col;
-                        currentSortDir = 'desc'; // Padrão desc ao trocar de coluna
+                        currentSortDir = 'desc';
                     }
                     applyFilterAndSort();
                 });
             });
         }
 
-        // APLICAR FILTRAGEM E ORDENAÇÃO
+        // APLICAR FILTRAGEM, RECALCULAR COPOS E ORDENAR LISTA
         function applyFilterAndSort() {
             const selectedReg = document.getElementById('regional-filter').value;
+            const mainTitleEl = document.getElementById('page-main-title');
+
             let filtered = allData;
 
             if (selectedReg !== 'all') {
                 filtered = allData.filter(item => item.str_regional === selectedReg);
+                mainTitleEl.textContent = `RANKING ${selectedReg}`;
+            } else {
+                mainTitleEl.textContent = 'RANKING UNIDADES';
             }
 
-            // Ordenar
+            // Renderizar secao dos copos para os dados filtrados no momento
+            renderGlasses(filtered);
+
+            // Ordenar lista
             const sorted = [...filtered].sort((a, b) => {
                 let valA = a[currentSortCol];
                 let valB = b[currentSortCol];
@@ -608,6 +716,116 @@
             });
 
             renderTable(sorted);
+        }
+
+        // RENDERIZAR OS COPOS COM TAMANHO PROPORCIONAL À META DA PRÓPRIA SEMANA (DESACUMULADA)
+        function renderGlasses(data) {
+            const container = document.getElementById('glasses-container');
+            if (!container) return;
+
+            if (data.length === 0) {
+                container.innerHTML = '<div style="text-align:center; color:var(--text-muted); width:100%;">Nenhum dado encontrado para esta regional.</div>';
+                return;
+            }
+
+            // Identificar qual semana de corte considerar para a exibicao
+            let corteWeek = 3;
+            if (data[0] && data[0].semana_corte) {
+                corteWeek = parseInt(data[0].semana_corte, 10) || 3;
+            }
+            if (weekMode === 'prev') {
+                corteWeek = Math.max(1, corteWeek - 1);
+            }
+
+            // 1. Calcular Metas Individuais (Desacumuladas) e Recebidos Individuais por Semana (1 a 5)
+            let weekMetasIndividuais = [0, 0, 0, 0, 0];
+            let weekRecebidosIndividuais = [0, 0, 0, 0, 0];
+
+            data.forEach(item => {
+                let prevMetaAcum = 0;
+                let prevRecAcum = 0;
+
+                for (let w = 1; w <= 5; w++) {
+                    // Meta
+                    const currMetaAcum = parseBrFloat(item['semana_' + w] || '0');
+                    const metaPropria = Math.max(0, currMetaAcum - prevMetaAcum);
+                    weekMetasIndividuais[w - 1] += metaPropria;
+                    prevMetaAcum = currMetaAcum;
+
+                    // Recebido
+                    if (w <= corteWeek) {
+                        const recKey = 'recebido_ate_sem' + w;
+                        const currRecAcum = item[recKey] !== undefined ? parseBrFloat(item[recKey]) : parseBrFloat(item.recebido);
+                        const recProprio = Math.max(0, currRecAcum - prevRecAcum);
+                        weekRecebidosIndividuais[w - 1] += recProprio;
+                        prevRecAcum = currRecAcum;
+                    }
+                }
+            });
+
+            // Meta Máxima entre as semanas para servir de referência do tamanho do copo (capacidade)
+            const maxWeekMetaIndiv = Math.max(...weekMetasIndividuais) || 1;
+            const maxGlassHeightPx = 135; // Altura máxima em pixels para a semana de maior meta
+            const minGlassHeightPx = 40;  // Altura mínima visual
+
+            let html = '';
+
+            for (let w = 1; w <= 5; w++) {
+                const sumMetaIndiv = weekMetasIndividuais[w - 1];
+                let sumRecebidoIndiv = weekRecebidosIndividuais[w - 1];
+
+                // Tamanho proporcional da estrutura do copo baseado na Meta Individual da Semana
+                let glassOuterHeight = Math.round((sumMetaIndiv / maxWeekMetaIndiv) * maxGlassHeightPx);
+                if (glassOuterHeight < minGlassHeightPx && sumMetaIndiv > 0) {
+                    glassOuterHeight = minGlassHeightPx;
+                }
+
+                let pct = sumMetaIndiv > 0 ? (sumRecebidoIndiv / sumMetaIndiv) * 100 : 0;
+                let fillHeight = Math.min(100, pct);
+
+                let borderStyle = '';
+                let fillColor = '';
+
+                if (w < corteWeek) {
+                    // Semanas passadas
+                    if (pct >= 100) {
+                        borderStyle = 'border: 2px solid #00E676;';
+                        fillColor = '#00E676';
+                    } else {
+                        borderStyle = 'border: 2px solid #E50914;';
+                        fillColor = '#E50914';
+                    }
+                } else if (w === corteWeek) {
+                    // Semana atual/ativa
+                    borderStyle = 'border: 2px dashed #FFD700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.35);';
+                    fillColor = pct >= 100 ? '#00E676' : '#E50914';
+                } else {
+                    // Semanas futuras
+                    borderStyle = 'border: 2px dashed #3a3a3a;';
+                    fillColor = 'transparent';
+                    fillHeight = 0;
+                    sumRecebidoIndiv = 0;
+                    pct = 0;
+                }
+
+                const formattedRecebido = formatCurrencyNoCents(sumRecebidoIndiv);
+                const formattedMeta = formatCurrencyNoCents(sumMetaIndiv);
+                const formattedPct = pct.toFixed(1).replace('.', ',') + '%';
+
+                html += `
+                    <div class="glass-card">
+                        <div class="glass-top-realizado">${formattedRecebido}</div>
+                        <div class="glass-outer" style="height: ${glassOuterHeight}px; ${borderStyle}">
+                            <div class="glass-inner" style="height: ${fillHeight}%; background-color: ${fillColor};"></div>
+                            <div class="glass-pct-overlay">${formattedPct}</div>
+                        </div>
+                        <div class="glass-week-title">Semana ${w}</div>
+                        <div class="glass-bottom-meta">${formattedMeta}</div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
         }
 
         // RENDERIZAR TABELA
