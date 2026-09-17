@@ -65,7 +65,7 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         /* TOGGLE DE SEMANA */
@@ -97,7 +97,7 @@
             box-shadow: 0 0 8px var(--v4-red-glow);
         }
 
-        /* SELECT DE REGIONAL COM SETA AJUSTADA */
+        /* SELECTS COM SETA AJUSTADA */
         .v4-select {
             background-color: #1a1a1a;
             color: #ffffff;
@@ -305,7 +305,7 @@
         }
 
         th:nth-child(1), th:nth-child(2) { text-align: left; }
-        th:nth-child(2) { width: 28%; }
+        th:nth-child(2) { width: 25%; }
 
         tr {
             background-color: var(--panel-bg);
@@ -347,7 +347,7 @@
             width: 80px;
         }
 
-        td.regional-col {
+        td.regional-col, td.horizonte-col {
             font-weight: 700;
             color: #a0a0a0;
             text-align: center;
@@ -481,6 +481,11 @@
                 <button id="btn-prev-week" class="week-btn" onclick="setWeekMode('prev')">Semana Anterior</button>
             </div>
 
+            <!-- FILTRO DE HORIZONTE (SIGLAS) -->
+            <select id="horizonte-filter" class="v4-select">
+                <option value="all">Todos os Horizontes</option>
+            </select>
+
             <!-- FILTRO DE REGIONAL COM SETA AJUSTADA -->
             <select id="regional-filter" class="v4-select">
                 <option value="all">Todas as Regionais</option>
@@ -514,6 +519,7 @@
                         <th class="sortable" data-col="deltaSemanaNum"><span>Delta Semana <i class="sort-icon">↕</i></span></th>
                         <th class="sortable" data-col="realizadoNum"><span>Realizado <i class="sort-icon">↕</i></span></th>
                         <th class="sortable" data-col="disponivelAnoNum"><span>Disponível Ano <i class="sort-icon">↕</i></span></th>
+                        <th class="sortable" data-col="horizonteSigla"><span>Horizonte <i class="sort-icon">↕</i></span></th>
                         <th class="sortable" data-col="str_regional"><span>Regional <i class="sort-icon">↕</i></span></th>
                     </tr>
                 </thead>
@@ -542,6 +548,13 @@
             document.getElementById('current-month').textContent = `${monthStr} DE ${yearStr}`;
         }
         updateCurrentMonth();
+
+        // EXTRAIR SIGLA DO HORIZONTE (EX: "H1 - Aceleração" -> "H1")
+        function getHorizonteSigla(horizStr) {
+            if (!horizStr) return '-';
+            let parts = horizStr.toString().trim().split(' ');
+            return parts[0].toUpperCase();
+        }
 
         // CONVERTER VALOR BRASILEIRO PARA FLOAT
         function parseBrFloat(str) {
@@ -636,7 +649,7 @@
         // CARREGAMENTO DO JSON
         async function loadData() {
             try {
-                const response = await fetch('dados.json');
+                const response = await fetch('dados.json.json');
                 if (!response.ok) throw new Error('Falha ao carregar o arquivo JSON.');
                 const data = await response.json();
                 
@@ -645,34 +658,52 @@
                         ...item,
                         unidade: cleanUnitName(item.unidade),
                         provisionadoNum: parseBrFloat(item.provisionado),
-                        disponivelAnoNum: parseBrFloat(item.disponivel_ano)
+                        disponivelAnoNum: parseBrFloat(item.disponivel_ano),
+                        horizonteRaw: item.horizonte || '',
+                        horizonteSigla: getHorizonteSigla(item.horizonte)
                     };
                 });
 
                 recalculateData();
-                populateFilter(allData);
+                populateFilters(allData);
                 setupSortHeaders();
                 setupRowSelection();
                 applyFilterAndSort();
             } catch (error) {
                 console.error("Erro:", error);
-                document.getElementById('table-body').innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json' está na mesma pasta.</td></tr>`;
+                document.getElementById('table-body').innerHTML = `<tr><td colspan="10" style="text-align:center; color:var(--v4-red);">Erro ao carregar dados. Certifique-se de que o arquivo 'dados.json.json' está na mesma pasta.</td></tr>`;
             }
         }
 
-        // POPULAR FILTRO DE REGIONAIS
-        function populateFilter(data) {
-            const filter = document.getElementById('regional-filter');
+        // POPULAR FILTROS DE REGIONAIS E HORIZONTES (APENAS SIGLAS NO DROPDOWN)
+        function populateFilters(data) {
+            // Filtro de Regionais
+            const regFilter = document.getElementById('regional-filter');
             const regionais = [...new Set(data.map(item => item.str_regional).filter(r => r && r.trim() !== ''))].sort();
             
             regionais.forEach(reg => {
                 const option = document.createElement('option');
                 option.value = reg;
                 option.textContent = reg;
-                filter.appendChild(option);
+                regFilter.appendChild(option);
             });
 
-            filter.addEventListener('change', () => {
+            regFilter.addEventListener('change', () => {
+                applyFilterAndSort();
+            });
+
+            // Filtro de Horizontes (Popula apenas com Siglas únicas: H1, H2, H3, H4, H5)
+            const horizFilter = document.getElementById('horizonte-filter');
+            const horizontesSiglas = [...new Set(data.map(item => item.horizonteSigla).filter(h => h && h !== '-'))].sort();
+
+            horizontesSiglas.forEach(sigla => {
+                const option = document.createElement('option');
+                option.value = sigla;
+                option.textContent = sigla; // Exibe apenas a sigla (ex: "H1", "H2")
+                horizFilter.appendChild(option);
+            });
+
+            horizFilter.addEventListener('change', () => {
                 applyFilterAndSort();
             });
         }
@@ -717,12 +748,17 @@
         // APLICAR FILTRAGEM, RECALCULAR COPOS E ORDENAR LISTA
         function applyFilterAndSort() {
             const selectedReg = document.getElementById('regional-filter').value;
+            const selectedHorizSigla = document.getElementById('horizonte-filter').value;
             const mainTitleEl = document.getElementById('page-main-title');
 
             let filtered = allData;
 
             if (selectedReg !== 'all') {
-                filtered = allData.filter(item => item.str_regional === selectedReg);
+                filtered = filtered.filter(item => item.str_regional === selectedReg);
+            }
+
+            if (selectedHorizSigla !== 'all') {
+                filtered = filtered.filter(item => item.horizonteSigla === selectedHorizSigla);
             }
 
             // Verificar se a unidade selecionada ainda esta nos dados filtrados
@@ -738,6 +774,8 @@
                 mainTitleEl.textContent = `METAS ${selectedUnitName}`;
             } else if (selectedReg !== 'all') {
                 mainTitleEl.textContent = `RANKING ${selectedReg}`;
+            } else if (selectedHorizSigla !== 'all') {
+                mainTitleEl.textContent = `RANKING ${selectedHorizSigla}`;
             } else {
                 mainTitleEl.textContent = 'RANKING UNIDADES';
             }
@@ -898,7 +936,7 @@
             let html = '';
 
             if (data.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Nenhuma unidade encontrada para os filtros selecionados.</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="10" style="text-align:center;">Nenhuma unidade encontrada para os filtros selecionados.</td></tr>';
                 return;
             }
 
@@ -941,6 +979,7 @@
                             </div>
                         </td>
                         <td>${formatCurrency(row.disponivelAnoNum)}</td>
+                        <td class="horizonte-col" title="${row.horizonteRaw}">${row.horizonteSigla}</td>
                         <td class="regional-col">${row.str_regional || '-'}</td>
                     </tr>
                 `;
