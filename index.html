@@ -124,14 +124,6 @@
             border-color: #ff1a26;
         }
 
-        .header-month {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .v4-logo-right {
             height: 48px;
             width: 48px;
@@ -491,9 +483,11 @@
                 <option value="all">Todas as Regionais</option>
             </select>
 
-            <div class="header-month" id="current-month">
-                <!-- SETEMBRO DE 2026 -->
-            </div>
+            <!-- FILTRO DE HUNTER -->
+            <select id="hunter-filter" class="v4-select">
+                <option value="all">Todos os Hunters</option>
+            </select>
+
             <img src="logo-v4.jpg" alt="V4 Company" class="v4-logo-right">
         </div>
     </header>
@@ -535,19 +529,6 @@
         let currentSortCol = 'realizadoNum';
         let currentSortDir = 'desc';
         let selectedUnitName = null; // Unidade atualmente selecionada ao clicar na linha
-
-        // ATUALIZAR MÊS VIGENTE (EX: SETEMBRO DE 2026)
-        function updateCurrentMonth() {
-            const now = new Date();
-            const monthNames = [
-                "JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO",
-                "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
-            ];
-            const monthStr = monthNames[now.getMonth()];
-            const yearStr = now.getFullYear();
-            document.getElementById('current-month').textContent = `${monthStr} DE ${yearStr}`;
-        }
-        updateCurrentMonth();
 
         // EXTRAIR SIGLA DO HORIZONTE (EX: "H1 - Aceleração" -> "H1")
         function getHorizonteSigla(horizStr) {
@@ -706,6 +687,21 @@
             horizFilter.addEventListener('change', () => {
                 applyFilterAndSort();
             });
+
+            // Filtro de Hunters
+            const hunterFilter = document.getElementById('hunter-filter');
+            const hunters = [...new Set(data.map(item => item.hunter).filter(h => h && h.trim() !== ''))].sort();
+
+            hunters.forEach(hunter => {
+                const option = document.createElement('option');
+                option.value = hunter;
+                option.textContent = hunter;
+                hunterFilter.appendChild(option);
+            });
+
+            hunterFilter.addEventListener('change', () => {
+                applyFilterAndSort();
+            });
         }
 
         // CONFIGURAR CLIQUE NOS CABEÇALHOS PARA ORDENAÇÃO
@@ -749,6 +745,7 @@
         function applyFilterAndSort() {
             const selectedReg = document.getElementById('regional-filter').value;
             const selectedHorizSigla = document.getElementById('horizonte-filter').value;
+            const selectedHunter = document.getElementById('hunter-filter').value;
             const mainTitleEl = document.getElementById('page-main-title');
 
             let filtered = allData;
@@ -759,6 +756,10 @@
 
             if (selectedHorizSigla !== 'all') {
                 filtered = filtered.filter(item => item.horizonteSigla === selectedHorizSigla);
+            }
+
+            if (selectedHunter !== 'all') {
+                filtered = filtered.filter(item => item.hunter === selectedHunter);
             }
 
             // Verificar se a unidade selecionada ainda esta nos dados filtrados
@@ -776,6 +777,8 @@
                 mainTitleEl.textContent = `RANKING ${selectedReg}`;
             } else if (selectedHorizSigla !== 'all') {
                 mainTitleEl.textContent = `RANKING ${selectedHorizSigla}`;
+            } else if (selectedHunter !== 'all') {
+                mainTitleEl.textContent = `RANKING ${selectedHunter.toUpperCase()}`;
             } else {
                 mainTitleEl.textContent = 'RANKING UNIDADES';
             }
