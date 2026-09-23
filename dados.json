@@ -1422,6 +1422,35 @@
   },
   {
     "rank": "50",
+    "unidade": "V4 Company Santos Gonçalves & Co",
+    "provisionado": "49.801,95",
+    "semana_1": "8.353,29",
+    "semana_2": "18.816,03",
+    "semana_3": "30.785,88",
+    "semana_4": "49.801,95",
+    "recebido": "34.658,15",
+    "semana_5": "49.801,95",
+    "semana_corte": "4",
+    "valor_faltante_meta": "15.143,8",
+    "realizado": "69,59%",
+    "disponivel_ano": "13.654,23",
+    "str_regional": "RS",
+    "recebido_ate_sem1": "4.544,45",
+    "realizado_sem1": "54,4%",
+    "recebido_ate_sem2": "11.179,88",
+    "realizado_sem2": "59,42%",
+    "recebido_ate_sem3": "23.841,36",
+    "realizado_sem3": "77,44%",
+    "recebido_ate_sem4": "34.658,15",
+    "realizado_sem4": "69,59%",
+    "recebido_ate_sem5": "34.658,15",
+    "realizado_sem5": "69,59%",
+    "id_tenant": "50ef02a2-4ed5-46f5-8262-660494bc0014",
+    "horizonte": "H2 - Coordenadora - 60k a 150k",
+    "hunter": "Izabela Mattano"
+  },
+  {
+    "rank": "51",
     "unidade": "V4 Company Cotta CNG & CO",
     "provisionado": "21.639,66",
     "semana_1": "3.911,94",
@@ -1450,7 +1479,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "51",
+    "rank": "52",
     "unidade": "V4 Company Freitas Ramos & Associados",
     "provisionado": "175.971,39",
     "semana_1": "18.646,02",
@@ -1479,7 +1508,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "52",
+    "rank": "53",
     "unidade": "V4 Company Gulias & Associados",
     "provisionado": "143.168,6",
     "semana_1": "2.587,43",
@@ -1508,7 +1537,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "53",
+    "rank": "54",
     "unidade": "V4 Company Amaral & Associados",
     "provisionado": "993.004,92",
     "semana_1": "166.656,06",
@@ -1537,7 +1566,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "54",
+    "rank": "55",
     "unidade": "V4 Company Kuri & Associados",
     "provisionado": "956.661,03",
     "semana_1": "166.152,38",
@@ -1566,7 +1595,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "55",
+    "rank": "56",
     "unidade": "V4 Company Nunes & Associados",
     "provisionado": "1.107.735,07",
     "semana_1": "181.048,11",
@@ -1593,35 +1622,6 @@
     "id_tenant": "065224cf-aa45-40a0-9c03-acf886b3c1da",
     "horizonte": "H5 - Diretor / Regional",
     "hunter": "Gerson Xavier"
-  },
-  {
-    "rank": "56",
-    "unidade": "V4 Company Santos Gonçalves & Co",
-    "provisionado": "49.801,95",
-    "semana_1": "8.353,29",
-    "semana_2": "18.816,03",
-    "semana_3": "30.785,88",
-    "semana_4": "49.801,95",
-    "recebido": "33.468,26",
-    "semana_5": "49.801,95",
-    "semana_corte": "4",
-    "valor_faltante_meta": "16.333,69",
-    "realizado": "67,2%",
-    "disponivel_ano": "13.654,23",
-    "str_regional": "RS",
-    "recebido_ate_sem1": "4.544,45",
-    "realizado_sem1": "54,4%",
-    "recebido_ate_sem2": "11.179,88",
-    "realizado_sem2": "59,42%",
-    "recebido_ate_sem3": "23.841,36",
-    "realizado_sem3": "77,44%",
-    "recebido_ate_sem4": "33.468,26",
-    "realizado_sem4": "67,2%",
-    "recebido_ate_sem5": "33.468,26",
-    "realizado_sem5": "67,2%",
-    "id_tenant": "50ef02a2-4ed5-46f5-8262-660494bc0014",
-    "horizonte": "H2 - Coordenadora - 60k a 150k",
-    "hunter": "Izabela Mattano"
   },
   {
     "rank": "57",
