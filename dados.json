@@ -2408,6 +2408,35 @@
   },
   {
     "rank": "84",
+    "unidade": "V4 Company SCN & Co",
+    "provisionado": "156.486,92",
+    "semana_1": "37.675,75",
+    "semana_2": "72.570,14",
+    "semana_3": "116.515,14",
+    "semana_4": "149.904,05",
+    "recebido": "90.556,07",
+    "semana_5": "156.486,92",
+    "semana_corte": "4",
+    "valor_faltante_meta": "59.347,98",
+    "realizado": "60,41%",
+    "disponivel_ano": "31.275,21",
+    "str_regional": "SC",
+    "recebido_ate_sem1": "8.600,39",
+    "realizado_sem1": "22,83%",
+    "recebido_ate_sem2": "47.292,85",
+    "realizado_sem2": "65,17%",
+    "recebido_ate_sem3": "62.678,04",
+    "realizado_sem3": "53,79%",
+    "recebido_ate_sem4": "90.556,07",
+    "realizado_sem4": "60,41%",
+    "recebido_ate_sem5": "90.556,07",
+    "realizado_sem5": "57,87%",
+    "id_tenant": "759ada1b-f842-4a9b-9f01-fa9a8061893b",
+    "horizonte": "H3 - Gerente - 150k a 450k",
+    "hunter": "Deborah Reynaldo"
+  },
+  {
+    "rank": "85",
     "unidade": "V4 Company Sousa Ferraz & Co.",
     "provisionado": "140.564,17",
     "semana_1": "49.948,6",
@@ -2436,7 +2465,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "85",
+    "rank": "86",
     "unidade": "V4 Company Ferraz Piai & Co.",
     "provisionado": "752.585,32",
     "semana_1": "136.330,13",
@@ -2465,7 +2494,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "86",
+    "rank": "87",
     "unidade": "V4 Company Calvão & Associados",
     "provisionado": "146.544,1",
     "semana_1": "15.700,43",
@@ -2494,7 +2523,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "87",
+    "rank": "88",
     "unidade": "V4 Company Canovas Mendes & Associados & Co",
     "provisionado": "249.745,7",
     "semana_1": "22.747,12",
@@ -2523,7 +2552,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "88",
+    "rank": "89",
     "unidade": "V4 Company Ferreira Ornelas & Co.",
     "provisionado": "130.053,79",
     "semana_1": "30.210,85",
@@ -2552,7 +2581,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "89",
+    "rank": "90",
     "unidade": "V4 Company Carvalho & Co.",
     "provisionado": "1.060.943,7",
     "semana_1": "279.484,59",
@@ -2581,7 +2610,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "90",
+    "rank": "91",
     "unidade": "V4 Company Lisboa Vieira & Associados",
     "provisionado": "320.026,34",
     "semana_1": "69.724,5",
@@ -2610,7 +2639,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "91",
+    "rank": "92",
     "unidade": "V4 Company SENA & Co.",
     "provisionado": "27.692,78",
     "semana_1": "0",
@@ -2639,7 +2668,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "92",
+    "rank": "93",
     "unidade": "V4 Company Antunes Bueno & Co",
     "provisionado": "135.597,92",
     "semana_1": "22.125,58",
@@ -2668,7 +2697,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "93",
+    "rank": "94",
     "unidade": "V4 Company Borges & Co.",
     "provisionado": "415.491,23",
     "semana_1": "68.425,54",
@@ -2695,35 +2724,6 @@
     "id_tenant": "75651ca4-2861-4f15-bc70-f6efce65af2f",
     "horizonte": "H4 - Gerente Maturada - 450k a 900k",
     "hunter": "Bruno Ferreira"
-  },
-  {
-    "rank": "94",
-    "unidade": "V4 Company SCN & Co",
-    "provisionado": "156.486,92",
-    "semana_1": "37.675,75",
-    "semana_2": "72.570,14",
-    "semana_3": "116.515,14",
-    "semana_4": "149.904,05",
-    "recebido": "88.219,79",
-    "semana_5": "156.486,92",
-    "semana_corte": "4",
-    "valor_faltante_meta": "61.684,26",
-    "realizado": "58,85%",
-    "disponivel_ano": "31.275,21",
-    "str_regional": "SC",
-    "recebido_ate_sem1": "8.600,39",
-    "realizado_sem1": "22,83%",
-    "recebido_ate_sem2": "47.292,85",
-    "realizado_sem2": "65,17%",
-    "recebido_ate_sem3": "62.678,04",
-    "realizado_sem3": "53,79%",
-    "recebido_ate_sem4": "88.219,79",
-    "realizado_sem4": "58,85%",
-    "recebido_ate_sem5": "88.219,79",
-    "realizado_sem5": "56,38%",
-    "id_tenant": "759ada1b-f842-4a9b-9f01-fa9a8061893b",
-    "horizonte": "H3 - Gerente - 150k a 450k",
-    "hunter": "Deborah Reynaldo"
   },
   {
     "rank": "95",
