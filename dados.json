@@ -998,7 +998,7 @@
     "semana_corte": "4",
     "valor_faltante_meta": "166.541,02",
     "realizado": "82,01%",
-    "disponivel_ano": "79.160,22",
+    "disponivel_ano": "77.653,28",
     "str_regional": "SP1",
     "recebido_ate_sem1": "186.593,94",
     "realizado_sem1": "100%",
@@ -2495,6 +2495,35 @@
   },
   {
     "rank": "87",
+    "unidade": "V4 Company Placeres & Co.",
+    "provisionado": "351.952,63",
+    "semana_1": "23.738,88",
+    "semana_2": "104.068,17",
+    "semana_3": "167.671,32",
+    "semana_4": "309.599,77",
+    "recebido": "196.143,8",
+    "semana_5": "351.952,63",
+    "semana_corte": "4",
+    "valor_faltante_meta": "113.455,97",
+    "realizado": "63,35%",
+    "disponivel_ano": "56.888,72",
+    "str_regional": "SP1",
+    "recebido_ate_sem1": "35.848,16",
+    "realizado_sem1": "100%",
+    "recebido_ate_sem2": "82.455,34",
+    "realizado_sem2": "79,23%",
+    "recebido_ate_sem3": "139.142,16",
+    "realizado_sem3": "82,99%",
+    "recebido_ate_sem4": "196.143,8",
+    "realizado_sem4": "63,35%",
+    "recebido_ate_sem5": "196.143,8",
+    "realizado_sem5": "55,73%",
+    "id_tenant": "95dacc42-6f6c-4796-af80-1c4adc9b3695",
+    "horizonte": "H4 - Gerente Maturada - 450k a 900k",
+    "hunter": "Bruno Ferreira"
+  },
+  {
+    "rank": "88",
     "unidade": "V4 Company GM & Co",
     "provisionado": "107.563,48",
     "semana_1": "21.516,58",
@@ -2523,7 +2552,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "88",
+    "rank": "89",
     "unidade": "V4 Company Lisboa Vieira & Associados",
     "provisionado": "308.366,17",
     "semana_1": "69.373,4",
@@ -2552,7 +2581,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "89",
+    "rank": "90",
     "unidade": "V4 Company Piran & Co.",
     "provisionado": "176.160,13",
     "semana_1": "23.069,68",
@@ -2581,7 +2610,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "90",
+    "rank": "91",
     "unidade": "V4 Company Canovas Mendes & Associados & Co",
     "provisionado": "247.875,15",
     "semana_1": "22.632,58",
@@ -2610,7 +2639,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "91",
+    "rank": "92",
     "unidade": "V4 Colli & Co.",
     "provisionado": "2.491.712,78",
     "semana_1": "280.998,52",
@@ -2639,7 +2668,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "92",
+    "rank": "93",
     "unidade": "V4 Company Candido & Co.",
     "provisionado": "62.426,9",
     "semana_1": "20.742,78",
@@ -2668,7 +2697,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "93",
+    "rank": "94",
     "unidade": "V4 Company Campos Ramaldes & Co.",
     "provisionado": "82.544,26",
     "semana_1": "7.405,57",
@@ -2697,7 +2726,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "94",
+    "rank": "95",
     "unidade": "V4 Company Davi & Co.",
     "provisionado": "212.524,19",
     "semana_1": "18.484,91",
@@ -2726,7 +2755,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "95",
+    "rank": "96",
     "unidade": "V4 Company Vila Santos & Co.",
     "provisionado": "140.697,78",
     "semana_1": "50.156,65",
@@ -2755,7 +2784,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "96",
+    "rank": "97",
     "unidade": "V4 Company SCN & Co",
     "provisionado": "155.698,93",
     "semana_1": "37.486,03",
@@ -2784,7 +2813,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "97",
+    "rank": "98",
     "unidade": "V4 Company Borges & Co.",
     "provisionado": "413.399,01",
     "semana_1": "68.080,98",
@@ -2813,7 +2842,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "98",
+    "rank": "99",
     "unidade": "V4 Company Sousa Ferraz & Co.",
     "provisionado": "139.856,36",
     "semana_1": "49.697,08",
@@ -2842,7 +2871,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "99",
+    "rank": "100",
     "unidade": "V4 Company SENA & Co.",
     "provisionado": "27.553,33",
     "semana_1": "0",
@@ -2868,35 +2897,6 @@
     "realizado_sem5": "59,64%",
     "id_tenant": "ec54111c-2587-414d-a46a-d3d9ae910d6a",
     "horizonte": "H2 - Coordenadora - 60k a 150k",
-    "hunter": "Bruno Ferreira"
-  },
-  {
-    "rank": "100",
-    "unidade": "V4 Company Placeres & Co.",
-    "provisionado": "351.952,63",
-    "semana_1": "23.738,88",
-    "semana_2": "104.068,17",
-    "semana_3": "167.671,32",
-    "semana_4": "309.599,77",
-    "recebido": "182.312,59",
-    "semana_5": "351.952,63",
-    "semana_corte": "4",
-    "valor_faltante_meta": "127.287,18",
-    "realizado": "58,89%",
-    "disponivel_ano": "56.888,72",
-    "str_regional": "SP1",
-    "recebido_ate_sem1": "35.848,16",
-    "realizado_sem1": "100%",
-    "recebido_ate_sem2": "82.455,34",
-    "realizado_sem2": "79,23%",
-    "recebido_ate_sem3": "139.142,16",
-    "realizado_sem3": "82,99%",
-    "recebido_ate_sem4": "182.312,59",
-    "realizado_sem4": "58,89%",
-    "recebido_ate_sem5": "182.312,59",
-    "realizado_sem5": "51,8%",
-    "id_tenant": "95dacc42-6f6c-4796-af80-1c4adc9b3695",
-    "horizonte": "H4 - Gerente Maturada - 450k a 900k",
     "hunter": "Bruno Ferreira"
   },
   {
