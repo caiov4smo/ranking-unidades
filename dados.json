@@ -1277,6 +1277,35 @@
   },
   {
     "rank": "45",
+    "unidade": "V4 Company RB & Co.",
+    "provisionado": "241.071,41",
+    "semana_1": "33.691,11",
+    "semana_2": "110.905,05",
+    "semana_3": "173.697,88",
+    "semana_4": "204.523,51",
+    "recebido": "6.358",
+    "semana_5": "241.071,41",
+    "semana_corte": "1",
+    "valor_faltante_meta": "27.333,11",
+    "realizado": "18,87%",
+    "disponivel_ano": "53.019,69",
+    "str_regional": "SP3",
+    "recebido_ate_sem1": "6.358",
+    "realizado_sem1": "18,87%",
+    "recebido_ate_sem2": "6.358",
+    "realizado_sem2": "5,73%",
+    "recebido_ate_sem3": "6.358",
+    "realizado_sem3": "3,66%",
+    "recebido_ate_sem4": "6.358",
+    "realizado_sem4": "3,11%",
+    "recebido_ate_sem5": "6.358",
+    "realizado_sem5": "2,64%",
+    "id_tenant": "80c8f9fb-279a-4b75-baef-81af39514bc4",
+    "horizonte": "H3 - Gerente - 150k a 450k",
+    "hunter": "Izabela Mattano"
+  },
+  {
+    "rank": "46",
     "unidade": "V4 Company Fares Araujo & Co",
     "provisionado": "520.248,07",
     "semana_1": "43.725,73",
@@ -1305,7 +1334,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "46",
+    "rank": "47",
     "unidade": "V4 Company Sousa Ferraz & Co.",
     "provisionado": "201.323,93",
     "semana_1": "24.092,04",
@@ -1334,7 +1363,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "47",
+    "rank": "48",
     "unidade": "V4 Headquarter",
     "provisionado": "1.122.724,8",
     "semana_1": "92.952,9",
@@ -1363,7 +1392,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "48",
+    "rank": "49",
     "unidade": "V4 Company Lisboa Vieira & Associados",
     "provisionado": "463.395,71",
     "semana_1": "30.021,08",
@@ -1392,7 +1421,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "49",
+    "rank": "50",
     "unidade": "V4 Company Bilinski & Associados",
     "provisionado": "1.497.771,76",
     "semana_1": "136.968,08",
@@ -1421,7 +1450,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "50",
+    "rank": "51",
     "unidade": "V4 Company Souza Santos & Associados",
     "provisionado": "352.816,55",
     "semana_1": "35.757,27",
@@ -1448,35 +1477,6 @@
     "id_tenant": "856f78da-f17b-45ea-8452-98514daf9d21",
     "horizonte": "H3 - Gerente - 150k a 450k",
     "hunter": "Eric de Paula"
-  },
-  {
-    "rank": "51",
-    "unidade": "V4 Company RB & Co.",
-    "provisionado": "241.071,41",
-    "semana_1": "33.691,11",
-    "semana_2": "110.905,05",
-    "semana_3": "173.697,88",
-    "semana_4": "204.523,51",
-    "recebido": "5.058",
-    "semana_5": "241.071,41",
-    "semana_corte": "1",
-    "valor_faltante_meta": "28.633,11",
-    "realizado": "15,01%",
-    "disponivel_ano": "53.019,69",
-    "str_regional": "SP3",
-    "recebido_ate_sem1": "5.058",
-    "realizado_sem1": "15,01%",
-    "recebido_ate_sem2": "5.058",
-    "realizado_sem2": "4,56%",
-    "recebido_ate_sem3": "5.058",
-    "realizado_sem3": "2,91%",
-    "recebido_ate_sem4": "5.058",
-    "realizado_sem4": "2,47%",
-    "recebido_ate_sem5": "5.058",
-    "realizado_sem5": "2,1%",
-    "id_tenant": "80c8f9fb-279a-4b75-baef-81af39514bc4",
-    "horizonte": "H3 - Gerente - 150k a 450k",
-    "hunter": "Izabela Mattano"
   },
   {
     "rank": "52",
