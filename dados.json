@@ -117,6 +117,35 @@
   },
   {
     "rank": "5",
+    "unidade": "V4 Company Mendes Santos & Co.",
+    "provisionado": "167.584,71",
+    "semana_1": "12.512,46",
+    "semana_2": "59.477,36",
+    "semana_3": "80.838,61",
+    "semana_4": "124.138,1",
+    "recebido": "29.329,22",
+    "semana_5": "167.584,71",
+    "semana_corte": "2",
+    "valor_faltante_meta": "30.148,14",
+    "realizado": "49,31%",
+    "disponivel_ano": "57.139,13",
+    "str_regional": "RS",
+    "recebido_ate_sem1": "21.912,89",
+    "realizado_sem1": "100%",
+    "recebido_ate_sem2": "29.329,22",
+    "realizado_sem2": "49,31%",
+    "recebido_ate_sem3": "29.329,22",
+    "realizado_sem3": "36,28%",
+    "recebido_ate_sem4": "29.329,22",
+    "realizado_sem4": "23,63%",
+    "recebido_ate_sem5": "29.329,22",
+    "realizado_sem5": "17,5%",
+    "id_tenant": "e818ed8b-018a-4e5f-af5a-6fc5a630473c",
+    "horizonte": "H3 - Gerente - 150k a 450k",
+    "hunter": "Izabela Mattano"
+  },
+  {
+    "rank": "6",
     "unidade": "V4 Company Lopes Santana & Associados",
     "provisionado": "179.631,59",
     "semana_1": "10.796,62",
@@ -145,7 +174,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "6",
+    "rank": "7",
     "unidade": "V4 Company Buonnacorso & Co",
     "provisionado": "15.193,68",
     "semana_1": "0",
@@ -172,35 +201,6 @@
     "id_tenant": "d390e2e4-42a4-42c6-9822-4a7b293901c0",
     "horizonte": "H1 - Aceleração",
     "hunter": "Deborah Reynaldo"
-  },
-  {
-    "rank": "7",
-    "unidade": "V4 Company Mendes Santos & Co.",
-    "provisionado": "167.584,71",
-    "semana_1": "12.512,46",
-    "semana_2": "59.477,36",
-    "semana_3": "80.838,61",
-    "semana_4": "124.138,1",
-    "recebido": "25.823",
-    "semana_5": "167.584,71",
-    "semana_corte": "2",
-    "valor_faltante_meta": "33.654,36",
-    "realizado": "43,42%",
-    "disponivel_ano": "57.139,13",
-    "str_regional": "RS",
-    "recebido_ate_sem1": "21.912,89",
-    "realizado_sem1": "100%",
-    "recebido_ate_sem2": "25.823",
-    "realizado_sem2": "43,42%",
-    "recebido_ate_sem3": "25.823",
-    "realizado_sem3": "31,94%",
-    "recebido_ate_sem4": "25.823",
-    "realizado_sem4": "20,8%",
-    "recebido_ate_sem5": "25.823",
-    "realizado_sem5": "15,41%",
-    "id_tenant": "e818ed8b-018a-4e5f-af5a-6fc5a630473c",
-    "horizonte": "H3 - Gerente - 150k a 450k",
-    "hunter": "Izabela Mattano"
   },
   {
     "rank": "8",
@@ -262,6 +262,35 @@
   },
   {
     "rank": "10",
+    "unidade": "V4 Company Ames & Associados",
+    "provisionado": "533.139,43",
+    "semana_1": "46.191,22",
+    "semana_2": "259.877,34",
+    "semana_3": "348.661,13",
+    "semana_4": "438.433,74",
+    "recebido": "86.400,18",
+    "semana_5": "533.139,43",
+    "semana_corte": "2",
+    "valor_faltante_meta": "173.477,16",
+    "realizado": "33,25%",
+    "disponivel_ano": "9.857",
+    "str_regional": "RS",
+    "recebido_ate_sem1": "23.088,94",
+    "realizado_sem1": "49,99%",
+    "recebido_ate_sem2": "86.400,18",
+    "realizado_sem2": "33,25%",
+    "recebido_ate_sem3": "86.400,18",
+    "realizado_sem3": "24,78%",
+    "recebido_ate_sem4": "86.400,18",
+    "realizado_sem4": "19,71%",
+    "recebido_ate_sem5": "86.400,18",
+    "realizado_sem5": "16,21%",
+    "id_tenant": "102127e1-aeaf-43f0-a02b-f65cdaf3fd86",
+    "horizonte": "H4 - Gerente Maturada - 450k a 900k",
+    "hunter": "Izabela Mattano"
+  },
+  {
+    "rank": "11",
     "unidade": "V4 Company Elxai & Co.",
     "provisionado": "157.116,77",
     "semana_1": "44.243,75",
@@ -290,36 +319,36 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "11",
+    "rank": "12",
     "unidade": "V4 Company Godoy Rosendo & Co.",
     "provisionado": "438.468,67",
     "semana_1": "32.704,86",
     "semana_2": "144.080,23",
     "semana_3": "229.293,65",
     "semana_4": "301.532,91",
-    "recebido": "40.674,28",
+    "recebido": "41.985,62",
     "semana_5": "438.468,67",
     "semana_corte": "2",
-    "valor_faltante_meta": "103.405,95",
-    "realizado": "28,23%",
+    "valor_faltante_meta": "102.094,61",
+    "realizado": "29,14%",
     "disponivel_ano": "95.862,19",
     "str_regional": "SP1",
     "recebido_ate_sem1": "38.984,05",
     "realizado_sem1": "100%",
-    "recebido_ate_sem2": "40.674,28",
-    "realizado_sem2": "28,23%",
-    "recebido_ate_sem3": "40.674,28",
-    "realizado_sem3": "17,74%",
-    "recebido_ate_sem4": "40.674,28",
-    "realizado_sem4": "13,49%",
-    "recebido_ate_sem5": "40.674,28",
-    "realizado_sem5": "9,28%",
+    "recebido_ate_sem2": "41.985,62",
+    "realizado_sem2": "29,14%",
+    "recebido_ate_sem3": "41.985,62",
+    "realizado_sem3": "18,31%",
+    "recebido_ate_sem4": "41.985,62",
+    "realizado_sem4": "13,92%",
+    "recebido_ate_sem5": "41.985,62",
+    "realizado_sem5": "9,58%",
     "id_tenant": "1fa88193-acd8-4533-9fe1-fda4120c3a58",
     "horizonte": "H3 - Gerente - 150k a 450k",
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "12",
+    "rank": "13",
     "unidade": "V4 Company Sampaio & Co.",
     "provisionado": "59.755,91",
     "semana_1": "4.154,8",
@@ -348,7 +377,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "13",
+    "rank": "14",
     "unidade": "V4 Company Batista & Associados",
     "provisionado": "223.734,66",
     "semana_1": "9.297,53",
@@ -377,7 +406,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "14",
+    "rank": "15",
     "unidade": "V4 Company Santos Gonçalves & Co",
     "provisionado": "58.267,68",
     "semana_1": "7.142,35",
@@ -406,7 +435,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "15",
+    "rank": "16",
     "unidade": "V4 Company Borges & Co.",
     "provisionado": "392.372,23",
     "semana_1": "25.978,51",
@@ -435,7 +464,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "16",
+    "rank": "17",
     "unidade": "V4 Company Ruston & Co.",
     "provisionado": "770.424,78",
     "semana_1": "54.535,66",
@@ -464,7 +493,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "17",
+    "rank": "18",
     "unidade": "V4 Company Lima Soares & Co",
     "provisionado": "98.831,05",
     "semana_1": "3.116,66",
@@ -493,7 +522,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "18",
+    "rank": "19",
     "unidade": "V4 Company Pereira Lima & Associados",
     "provisionado": "118.894,42",
     "semana_1": "7.301,64",
@@ -522,7 +551,36 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "19",
+    "rank": "20",
+    "unidade": "V4 Company Barcellos & Co",
+    "provisionado": "341.323,58",
+    "semana_1": "14.337,52",
+    "semana_2": "145.758,98",
+    "semana_3": "222.124,26",
+    "semana_4": "285.577,54",
+    "recebido": "27.950,25",
+    "semana_5": "341.323,58",
+    "semana_corte": "2",
+    "valor_faltante_meta": "117.808,73",
+    "realizado": "19,18%",
+    "disponivel_ano": "93.624,49",
+    "str_regional": "SP3",
+    "recebido_ate_sem1": "12.621,75",
+    "realizado_sem1": "88,03%",
+    "recebido_ate_sem2": "27.950,25",
+    "realizado_sem2": "19,18%",
+    "recebido_ate_sem3": "27.950,25",
+    "realizado_sem3": "12,58%",
+    "recebido_ate_sem4": "27.950,25",
+    "realizado_sem4": "9,79%",
+    "recebido_ate_sem5": "27.950,25",
+    "realizado_sem5": "8,19%",
+    "id_tenant": "f5e92046-465a-43b0-b650-9a2634d10dac",
+    "horizonte": "H3 - Gerente - 150k a 450k",
+    "hunter": "Deborah Reynaldo"
+  },
+  {
+    "rank": "21",
     "unidade": "ROSOLEM VERONEZE & CORDEIRO ASSESSORIA DE MARKETING LTDA",
     "provisionado": "225.870,06",
     "semana_1": "12.473,43",
@@ -551,7 +609,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "20",
+    "rank": "22",
     "unidade": "V4 Company Sousa Gonçalves & Associados",
     "provisionado": "210.476,21",
     "semana_1": "35.524,9",
@@ -580,7 +638,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "21",
+    "rank": "23",
     "unidade": "V4 Company Cassola Lacerda Suto & Co",
     "provisionado": "44.052,37",
     "semana_1": "6.928,08",
@@ -609,7 +667,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "22",
+    "rank": "24",
     "unidade": "V4 Company Davi & Co.",
     "provisionado": "213.581,24",
     "semana_1": "17.200,5",
@@ -638,10 +696,10 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "23",
+    "rank": "25",
     "unidade": "V4 Company Venturini & Associados",
     "provisionado": "390.014,77",
-    "semana_1": "35.845,88",
+    "semana_1": "30.187,42",
     "semana_2": "135.295,5",
     "semana_3": "232.532,84",
     "semana_4": "321.368,73",
@@ -653,7 +711,7 @@
     "disponivel_ano": "16.339,06",
     "str_regional": "NE",
     "recebido_ate_sem1": "23.903,94",
-    "realizado_sem1": "66,69%",
+    "realizado_sem1": "79,19%",
     "recebido_ate_sem2": "23.903,94",
     "realizado_sem2": "17,67%",
     "recebido_ate_sem3": "23.903,94",
@@ -667,7 +725,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "24",
+    "rank": "26",
     "unidade": "V4 Company Dias & Co.",
     "provisionado": "164.047,09",
     "semana_1": "25.407,36",
@@ -696,7 +754,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "25",
+    "rank": "27",
     "unidade": "V4 Company Moreira Caetano & CO",
     "provisionado": "126.953,94",
     "semana_1": "10.677,17",
@@ -725,7 +783,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "26",
+    "rank": "28",
     "unidade": "V4 Company Menezes & Co.",
     "provisionado": "58.287,34",
     "semana_1": "1.947,91",
@@ -754,7 +812,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "27",
+    "rank": "29",
     "unidade": "V4 Company Dcastel & Co",
     "provisionado": "137.150,6",
     "semana_1": "16.743,21",
@@ -783,7 +841,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "28",
+    "rank": "30",
     "unidade": "V4 Company Nunes & Associados",
     "provisionado": "1.283.495,44",
     "semana_1": "126.381,01",
@@ -812,7 +870,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "29",
+    "rank": "31",
     "unidade": "V4 Company Domingues & Associados",
     "provisionado": "1.064.768,36",
     "semana_1": "114.575,31",
@@ -841,7 +899,36 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "30",
+    "rank": "32",
+    "unidade": "V4 Company Kuri & Associados",
+    "provisionado": "1.147.073,07",
+    "semana_1": "119.054,46",
+    "semana_2": "401.078,2",
+    "semana_3": "700.893,1",
+    "semana_4": "837.712,44",
+    "recebido": "64.398,83",
+    "semana_5": "1.147.073,07",
+    "semana_corte": "2",
+    "valor_faltante_meta": "336.679,37",
+    "realizado": "16,06%",
+    "disponivel_ano": "440.893,47",
+    "str_regional": "PR",
+    "recebido_ate_sem1": "52.101,64",
+    "realizado_sem1": "43,76%",
+    "recebido_ate_sem2": "64.398,83",
+    "realizado_sem2": "16,06%",
+    "recebido_ate_sem3": "64.398,83",
+    "realizado_sem3": "9,19%",
+    "recebido_ate_sem4": "64.398,83",
+    "realizado_sem4": "7,69%",
+    "recebido_ate_sem5": "64.398,83",
+    "realizado_sem5": "5,61%",
+    "id_tenant": "ee1ff0c0-4d3e-4418-b443-78c4262f7d78",
+    "horizonte": "H5 - Diretor / Regional",
+    "hunter": "Gerson Xavier"
+  },
+  {
+    "rank": "33",
     "unidade": "V4 Company SBS & CO",
     "provisionado": "135.196,83",
     "semana_1": "7.947,86",
@@ -870,7 +957,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "31",
+    "rank": "34",
     "unidade": "V4 Company SCN & Co",
     "provisionado": "167.680,88",
     "semana_1": "3.572,63",
@@ -899,7 +986,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "32",
+    "rank": "35",
     "unidade": "V4 Company Sousa Ferraz & Co.",
     "provisionado": "163.154,96",
     "semana_1": "19.253,4",
@@ -928,36 +1015,36 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "33",
-    "unidade": "V4 Company Kuri & Associados",
-    "provisionado": "1.147.073,07",
-    "semana_1": "119.054,46",
-    "semana_2": "401.078,2",
-    "semana_3": "700.893,1",
-    "semana_4": "837.712,44",
-    "recebido": "57.901,64",
-    "semana_5": "1.147.073,07",
+    "rank": "36",
+    "unidade": "V4 Company Ferraz Piai & Co.",
+    "provisionado": "897.911,62",
+    "semana_1": "85.617,51",
+    "semana_2": "310.563,42",
+    "semana_3": "510.178,28",
+    "semana_4": "653.791,98",
+    "recebido": "41.598,62",
+    "semana_5": "897.911,62",
     "semana_corte": "2",
-    "valor_faltante_meta": "343.176,56",
-    "realizado": "14,44%",
-    "disponivel_ano": "440.893,47",
-    "str_regional": "PR",
-    "recebido_ate_sem1": "52.101,64",
-    "realizado_sem1": "43,76%",
-    "recebido_ate_sem2": "57.901,64",
-    "realizado_sem2": "14,44%",
-    "recebido_ate_sem3": "57.901,64",
-    "realizado_sem3": "8,26%",
-    "recebido_ate_sem4": "57.901,64",
-    "realizado_sem4": "6,91%",
-    "recebido_ate_sem5": "57.901,64",
-    "realizado_sem5": "5,05%",
-    "id_tenant": "ee1ff0c0-4d3e-4418-b443-78c4262f7d78",
+    "valor_faltante_meta": "268.964,8",
+    "realizado": "13,39%",
+    "disponivel_ano": "231.432,6",
+    "str_regional": "SP1",
+    "recebido_ate_sem1": "31.598,62",
+    "realizado_sem1": "36,91%",
+    "recebido_ate_sem2": "41.598,62",
+    "realizado_sem2": "13,39%",
+    "recebido_ate_sem3": "41.598,62",
+    "realizado_sem3": "8,15%",
+    "recebido_ate_sem4": "41.598,62",
+    "realizado_sem4": "6,36%",
+    "recebido_ate_sem5": "41.598,62",
+    "realizado_sem5": "4,63%",
+    "id_tenant": "5e65d94a-0086-4e68-89ba-a62a394affda",
     "horizonte": "H5 - Diretor / Regional",
-    "hunter": "Gerson Xavier"
+    "hunter": "Izabela Mattano"
   },
   {
-    "rank": "34",
+    "rank": "37",
     "unidade": "V4 Company Novaes & Co.",
     "provisionado": "165.643,77",
     "semana_1": "21.075,87",
@@ -986,7 +1073,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "35",
+    "rank": "38",
     "unidade": "V4 Company Alves & Co.",
     "provisionado": "215.120,59",
     "semana_1": "58.239,1",
@@ -1015,7 +1102,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "36",
+    "rank": "39",
     "unidade": "V4 Company Ferreira Fronza & Co",
     "provisionado": "219.589,3",
     "semana_1": "11.987,31",
@@ -1044,7 +1131,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "37",
+    "rank": "40",
     "unidade": "V4 Company Martins Toniatti & Co.",
     "provisionado": "170.252,6",
     "semana_1": "15.263,84",
@@ -1073,7 +1160,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "38",
+    "rank": "41",
     "unidade": "V4 Company JLL Roque & Co.",
     "provisionado": "212.107,21",
     "semana_1": "25.964,25",
@@ -1102,36 +1189,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "39",
-    "unidade": "V4 Company Barcellos & Co",
-    "provisionado": "341.323,58",
-    "semana_1": "14.337,52",
-    "semana_2": "145.758,98",
-    "semana_3": "222.124,26",
-    "semana_4": "285.577,54",
-    "recebido": "17.834,25",
-    "semana_5": "341.323,58",
-    "semana_corte": "2",
-    "valor_faltante_meta": "127.924,73",
-    "realizado": "12,24%",
-    "disponivel_ano": "93.624,49",
-    "str_regional": "SP3",
-    "recebido_ate_sem1": "12.621,75",
-    "realizado_sem1": "88,03%",
-    "recebido_ate_sem2": "17.834,25",
-    "realizado_sem2": "12,24%",
-    "recebido_ate_sem3": "17.834,25",
-    "realizado_sem3": "8,03%",
-    "recebido_ate_sem4": "17.834,25",
-    "realizado_sem4": "6,24%",
-    "recebido_ate_sem5": "17.834,25",
-    "realizado_sem5": "5,23%",
-    "id_tenant": "f5e92046-465a-43b0-b650-9a2634d10dac",
-    "horizonte": "H3 - Gerente - 150k a 450k",
-    "hunter": "Deborah Reynaldo"
-  },
-  {
-    "rank": "40",
+    "rank": "42",
     "unidade": "V4 Company Dantas Cardinot & Co.",
     "provisionado": "188.940,8",
     "semana_1": "46.809,11",
@@ -1160,7 +1218,36 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "41",
+    "rank": "43",
+    "unidade": "V4 Company SBF & Co",
+    "provisionado": "129.489,28",
+    "semana_1": "9.517,77",
+    "semana_2": "71.357,53",
+    "semana_3": "86.817,41",
+    "semana_4": "116.685,16",
+    "recebido": "8.360,77",
+    "semana_5": "129.489,28",
+    "semana_corte": "2",
+    "valor_faltante_meta": "62.996,76",
+    "realizado": "11,72%",
+    "disponivel_ano": "30.224,69",
+    "str_regional": "MG1",
+    "recebido_ate_sem1": "2.904,88",
+    "realizado_sem1": "30,52%",
+    "recebido_ate_sem2": "8.360,77",
+    "realizado_sem2": "11,72%",
+    "recebido_ate_sem3": "8.360,77",
+    "realizado_sem3": "9,63%",
+    "recebido_ate_sem4": "8.360,77",
+    "realizado_sem4": "7,17%",
+    "recebido_ate_sem5": "8.360,77",
+    "realizado_sem5": "6,46%",
+    "id_tenant": "e97ed0ef-cade-4ad0-a06b-872c3551070e",
+    "horizonte": "H2 - Coordenadora - 60k a 150k",
+    "hunter": "Bruno Ferreira"
+  },
+  {
+    "rank": "44",
     "unidade": "V4 Company Nazar & Associados",
     "provisionado": "96.757,33",
     "semana_1": "0",
@@ -1189,7 +1276,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "42",
+    "rank": "45",
     "unidade": "V4 Company Candido & Co.",
     "provisionado": "56.843,11",
     "semana_1": "7.596,87",
@@ -1218,7 +1305,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "43",
+    "rank": "46",
     "unidade": "V4 Company Freitas Ramos & Associados",
     "provisionado": "251.283,12",
     "semana_1": "0",
@@ -1247,7 +1334,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "44",
+    "rank": "47",
     "unidade": "V4 Company Vieira & Associados",
     "provisionado": "169.349,39",
     "semana_1": "9.802,15",
@@ -1276,36 +1363,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "45",
-    "unidade": "V4 Company Ferraz Piai & Co.",
-    "provisionado": "897.911,62",
-    "semana_1": "88.253,66",
-    "semana_2": "310.563,42",
-    "semana_3": "510.178,28",
-    "semana_4": "653.791,98",
-    "recebido": "31.598,62",
-    "semana_5": "897.911,62",
-    "semana_corte": "2",
-    "valor_faltante_meta": "278.964,8",
-    "realizado": "10,17%",
-    "disponivel_ano": "231.432,6",
-    "str_regional": "SP1",
-    "recebido_ate_sem1": "31.598,62",
-    "realizado_sem1": "35,8%",
-    "recebido_ate_sem2": "31.598,62",
-    "realizado_sem2": "10,17%",
-    "recebido_ate_sem3": "31.598,62",
-    "realizado_sem3": "6,19%",
-    "recebido_ate_sem4": "31.598,62",
-    "realizado_sem4": "4,83%",
-    "recebido_ate_sem5": "31.598,62",
-    "realizado_sem5": "3,52%",
-    "id_tenant": "5e65d94a-0086-4e68-89ba-a62a394affda",
-    "horizonte": "H5 - Diretor / Regional",
-    "hunter": "Izabela Mattano"
-  },
-  {
-    "rank": "46",
+    "rank": "48",
     "unidade": "V4 Company Galdino & Co.",
     "provisionado": "92.848,31",
     "semana_1": "909,03",
@@ -1334,36 +1392,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "47",
-    "unidade": "V4 Company Ames & Associados",
-    "provisionado": "533.139,43",
-    "semana_1": "46.191,22",
-    "semana_2": "259.877,34",
-    "semana_3": "348.661,13",
-    "semana_4": "438.433,74",
-    "recebido": "25.380,14",
-    "semana_5": "533.139,43",
-    "semana_corte": "2",
-    "valor_faltante_meta": "234.497,2",
-    "realizado": "9,77%",
-    "disponivel_ano": "9.857",
-    "str_regional": "RS",
-    "recebido_ate_sem1": "23.088,94",
-    "realizado_sem1": "49,99%",
-    "recebido_ate_sem2": "25.380,14",
-    "realizado_sem2": "9,77%",
-    "recebido_ate_sem3": "25.380,14",
-    "realizado_sem3": "7,28%",
-    "recebido_ate_sem4": "25.380,14",
-    "realizado_sem4": "5,79%",
-    "recebido_ate_sem5": "25.380,14",
-    "realizado_sem5": "4,76%",
-    "id_tenant": "102127e1-aeaf-43f0-a02b-f65cdaf3fd86",
-    "horizonte": "H4 - Gerente Maturada - 450k a 900k",
-    "hunter": "Izabela Mattano"
-  },
-  {
-    "rank": "48",
+    "rank": "49",
     "unidade": "V4 Company Leal Vieira & Co.",
     "provisionado": "46.738,64",
     "semana_1": "2.597,22",
@@ -1392,7 +1421,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "49",
+    "rank": "50",
     "unidade": "V4 Colli & Co.",
     "provisionado": "2.735.101,87",
     "semana_1": "172.918,71",
@@ -1421,7 +1450,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "50",
+    "rank": "51",
     "unidade": "V4 Company Vila Santos & Co.",
     "provisionado": "267.995,22",
     "semana_1": "27.230,77",
@@ -1450,7 +1479,36 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "51",
+    "rank": "52",
+    "unidade": "V4 Company Reis Andrade & Co.",
+    "provisionado": "340.427,41",
+    "semana_1": "42.041,8",
+    "semana_2": "155.769,27",
+    "semana_3": "216.952,55",
+    "semana_4": "307.130,66",
+    "recebido": "13.959,83",
+    "semana_5": "340.427,41",
+    "semana_corte": "2",
+    "valor_faltante_meta": "141.809,44",
+    "realizado": "8,96%",
+    "disponivel_ano": "76.959,58",
+    "str_regional": "SC",
+    "recebido_ate_sem1": "8.511,17",
+    "realizado_sem1": "20,24%",
+    "recebido_ate_sem2": "13.959,83",
+    "realizado_sem2": "8,96%",
+    "recebido_ate_sem3": "13.959,83",
+    "realizado_sem3": "6,43%",
+    "recebido_ate_sem4": "13.959,83",
+    "realizado_sem4": "4,55%",
+    "recebido_ate_sem5": "13.959,83",
+    "realizado_sem5": "4,1%",
+    "id_tenant": "2d8deeb4-9d05-42a9-ba31-9b8724743aba",
+    "horizonte": "H3 - Gerente - 150k a 450k",
+    "hunter": "Deborah Reynaldo"
+  },
+  {
+    "rank": "53",
     "unidade": "V4 Company Victor, Basilio, Amaral & Co",
     "provisionado": "328.191,18",
     "semana_1": "23.220,25",
@@ -1479,10 +1537,10 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "52",
+    "rank": "54",
     "unidade": "V4 Company TAF & CO",
     "provisionado": "108.862,94",
-    "semana_1": "9.345,23",
+    "semana_1": "6.651,01",
     "semana_2": "35.293,95",
     "semana_3": "58.836,02",
     "semana_4": "77.989,05",
@@ -1494,7 +1552,7 @@
     "disponivel_ano": "23.830,7",
     "str_regional": "MG1",
     "recebido_ate_sem1": "3.117,17",
-    "realizado_sem1": "33,36%",
+    "realizado_sem1": "46,87%",
     "recebido_ate_sem2": "3.117,17",
     "realizado_sem2": "8,83%",
     "recebido_ate_sem3": "3.117,17",
@@ -1508,7 +1566,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "53",
+    "rank": "55",
     "unidade": "V4 Company Kloh Cerino & Associados",
     "provisionado": "946.030,76",
     "semana_1": "92.348,47",
@@ -1537,7 +1595,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "54",
+    "rank": "56",
     "unidade": "V4 Company Lencina Oliveira & Associados",
     "provisionado": "324.213,51",
     "semana_1": "13.714",
@@ -1566,7 +1624,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "55",
+    "rank": "57",
     "unidade": "V4 Company Jasson Oliveira & Co.",
     "provisionado": "895.133,39",
     "semana_1": "90.073,48",
@@ -1595,7 +1653,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "56",
+    "rank": "58",
     "unidade": "V4 Company ABLAB PARTICIPACOES",
     "provisionado": "119.131,26",
     "semana_1": "15.204,7",
@@ -1624,7 +1682,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "57",
+    "rank": "59",
     "unidade": "V4 Company Coimbra & Associados",
     "provisionado": "273.019,29",
     "semana_1": "19.338,8",
@@ -1653,7 +1711,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "58",
+    "rank": "60",
     "unidade": "V4 Company Aguiar & Associados",
     "provisionado": "488.029,78",
     "semana_1": "20.577,07",
@@ -1682,7 +1740,36 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "59",
+    "rank": "61",
+    "unidade": "V4 Company RB & Co.",
+    "provisionado": "251.744,23",
+    "semana_1": "26.924,59",
+    "semana_2": "142.611,75",
+    "semana_3": "192.793,27",
+    "semana_4": "217.427,88",
+    "recebido": "10.055,12",
+    "semana_5": "251.744,23",
+    "semana_corte": "2",
+    "valor_faltante_meta": "132.556,63",
+    "realizado": "7,05%",
+    "disponivel_ano": "11.451,5",
+    "str_regional": "SP3",
+    "recebido_ate_sem1": "6.358",
+    "realizado_sem1": "23,61%",
+    "recebido_ate_sem2": "10.055,12",
+    "realizado_sem2": "7,05%",
+    "recebido_ate_sem3": "10.055,12",
+    "realizado_sem3": "5,22%",
+    "recebido_ate_sem4": "10.055,12",
+    "realizado_sem4": "4,62%",
+    "recebido_ate_sem5": "10.055,12",
+    "realizado_sem5": "3,99%",
+    "id_tenant": "80c8f9fb-279a-4b75-baef-81af39514bc4",
+    "horizonte": "H3 - Gerente - 150k a 450k",
+    "hunter": "Izabela Mattano"
+  },
+  {
+    "rank": "62",
     "unidade": "V4 Company Calvão & Associados",
     "provisionado": "142.788,83",
     "semana_1": "5.112,99",
@@ -1711,7 +1798,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "60",
+    "rank": "63",
     "unidade": "V4 Company Dittert & Meister Associados",
     "provisionado": "75.726,7",
     "semana_1": "12.272,36",
@@ -1740,7 +1827,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "61",
+    "rank": "64",
     "unidade": "V4 Headquarter",
     "provisionado": "1.134.918,12",
     "semana_1": "93.922,71",
@@ -1769,7 +1856,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "62",
+    "rank": "65",
     "unidade": "V4 Company Saman & Associados",
     "provisionado": "416.212,37",
     "semana_1": "36.086,23",
@@ -1798,7 +1885,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "63",
+    "rank": "66",
     "unidade": "V4 Company Souza Santos & Associados",
     "provisionado": "286.475,11",
     "semana_1": "28.575,78",
@@ -1827,7 +1914,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "64",
+    "rank": "67",
     "unidade": "V4 Company BFG & Co.",
     "provisionado": "235.666,51",
     "semana_1": "3.399,61",
@@ -1856,7 +1943,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "65",
+    "rank": "68",
     "unidade": "V4 Company Ferreira Ornelas & Co.",
     "provisionado": "156.170,52",
     "semana_1": "8.952,27",
@@ -1885,7 +1972,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "66",
+    "rank": "69",
     "unidade": "V4 Company Bilinski & Associados",
     "provisionado": "1.208.717,64",
     "semana_1": "112.461,44",
@@ -1914,7 +2001,36 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "67",
+    "rank": "70",
+    "unidade": "V4 Company Telles Freire & Associados",
+    "provisionado": "1.187.916,73",
+    "semana_1": "106.207,17",
+    "semana_2": "573.502,11",
+    "semana_3": "752.029,62",
+    "semana_4": "981.516,95",
+    "recebido": "32.965,91",
+    "semana_5": "1.187.916,73",
+    "semana_corte": "2",
+    "valor_faltante_meta": "540.536,2",
+    "realizado": "5,75%",
+    "disponivel_ano": "98.404,81",
+    "str_regional": "NE",
+    "recebido_ate_sem1": "32.965,91",
+    "realizado_sem1": "31,04%",
+    "recebido_ate_sem2": "32.965,91",
+    "realizado_sem2": "5,75%",
+    "recebido_ate_sem3": "32.965,91",
+    "realizado_sem3": "4,38%",
+    "recebido_ate_sem4": "32.965,91",
+    "realizado_sem4": "3,36%",
+    "recebido_ate_sem5": "32.965,91",
+    "realizado_sem5": "2,78%",
+    "id_tenant": "6893b434-35c2-45e1-bde1-a0853f29f7fa",
+    "horizonte": "H5 - Diretor / Regional",
+    "hunter": "Eric de Paula"
+  },
+  {
+    "rank": "71",
     "unidade": "V4 Company Schaussard Silva & Co",
     "provisionado": "473.737,72",
     "semana_1": "44.138,73",
@@ -1943,7 +2059,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "68",
+    "rank": "72",
     "unidade": "V4 Company Jesus & Co.",
     "provisionado": "302.642,15",
     "semana_1": "27.109,17",
@@ -1972,36 +2088,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "69",
-    "unidade": "V4 Company Telles Freire & Associados",
-    "provisionado": "1.187.916,73",
-    "semana_1": "106.207,17",
-    "semana_2": "580.061,51",
-    "semana_3": "758.589,02",
-    "semana_4": "988.076,35",
-    "recebido": "32.965,91",
-    "semana_5": "1.187.916,73",
-    "semana_corte": "2",
-    "valor_faltante_meta": "547.095,6",
-    "realizado": "5,68%",
-    "disponivel_ano": "98.404,81",
-    "str_regional": "NE",
-    "recebido_ate_sem1": "32.965,91",
-    "realizado_sem1": "31,04%",
-    "recebido_ate_sem2": "32.965,91",
-    "realizado_sem2": "5,68%",
-    "recebido_ate_sem3": "32.965,91",
-    "realizado_sem3": "4,35%",
-    "recebido_ate_sem4": "32.965,91",
-    "realizado_sem4": "3,34%",
-    "recebido_ate_sem5": "32.965,91",
-    "realizado_sem5": "2,78%",
-    "id_tenant": "6893b434-35c2-45e1-bde1-a0853f29f7fa",
-    "horizonte": "H5 - Diretor / Regional",
-    "hunter": "Eric de Paula"
-  },
-  {
-    "rank": "70",
+    "rank": "73",
     "unidade": "V4 Company Oxicore & Co.",
     "provisionado": "416.545,46",
     "semana_1": "59.466,06",
@@ -2030,36 +2117,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "71",
-    "unidade": "V4 Company Reis Andrade & Co.",
-    "provisionado": "340.427,41",
-    "semana_1": "42.041,8",
-    "semana_2": "155.769,27",
-    "semana_3": "216.952,55",
-    "semana_4": "307.130,66",
-    "recebido": "8.511,17",
-    "semana_5": "340.427,41",
-    "semana_corte": "2",
-    "valor_faltante_meta": "147.258,1",
-    "realizado": "5,46%",
-    "disponivel_ano": "76.959,58",
-    "str_regional": "SC",
-    "recebido_ate_sem1": "8.511,17",
-    "realizado_sem1": "20,24%",
-    "recebido_ate_sem2": "8.511,17",
-    "realizado_sem2": "5,46%",
-    "recebido_ate_sem3": "8.511,17",
-    "realizado_sem3": "3,92%",
-    "recebido_ate_sem4": "8.511,17",
-    "realizado_sem4": "2,77%",
-    "recebido_ate_sem5": "8.511,17",
-    "realizado_sem5": "2,5%",
-    "id_tenant": "2d8deeb4-9d05-42a9-ba31-9b8724743aba",
-    "horizonte": "H3 - Gerente - 150k a 450k",
-    "hunter": "Deborah Reynaldo"
-  },
-  {
-    "rank": "72",
+    "rank": "74",
     "unidade": "V4 Company Fares Araujo & Co",
     "provisionado": "418.833,99",
     "semana_1": "32.306,69",
@@ -2088,7 +2146,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "73",
+    "rank": "75",
     "unidade": "V4 Company Barbosa Souza & Co.",
     "provisionado": "174.491,48",
     "semana_1": "13.621,93",
@@ -2117,7 +2175,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "74",
+    "rank": "76",
     "unidade": "V4 Company Placeres & Co.",
     "provisionado": "362.794,44",
     "semana_1": "14.105,64",
@@ -2146,7 +2204,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "75",
+    "rank": "77",
     "unidade": "V4 Company Alfradique & Associados",
     "provisionado": "418.142,22",
     "semana_1": "8.767,92",
@@ -2175,7 +2233,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "76",
+    "rank": "78",
     "unidade": "V4 Company Almeida & Associados",
     "provisionado": "157.476,61",
     "semana_1": "4.545,13",
@@ -2204,7 +2262,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "77",
+    "rank": "79",
     "unidade": "V4 Company Kessler & Co.",
     "provisionado": "247.343,94",
     "semana_1": "46.786,42",
@@ -2233,36 +2291,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "78",
-    "unidade": "V4 Company RB & Co.",
-    "provisionado": "251.744,23",
-    "semana_1": "26.924,59",
-    "semana_2": "142.611,75",
-    "semana_3": "192.793,27",
-    "semana_4": "217.427,88",
-    "recebido": "6.358",
-    "semana_5": "251.744,23",
-    "semana_corte": "2",
-    "valor_faltante_meta": "136.253,75",
-    "realizado": "4,46%",
-    "disponivel_ano": "11.451,5",
-    "str_regional": "SP3",
-    "recebido_ate_sem1": "6.358",
-    "realizado_sem1": "23,61%",
-    "recebido_ate_sem2": "6.358",
-    "realizado_sem2": "4,46%",
-    "recebido_ate_sem3": "6.358",
-    "realizado_sem3": "3,3%",
-    "recebido_ate_sem4": "6.358",
-    "realizado_sem4": "2,92%",
-    "recebido_ate_sem5": "6.358",
-    "realizado_sem5": "2,53%",
-    "id_tenant": "80c8f9fb-279a-4b75-baef-81af39514bc4",
-    "horizonte": "H3 - Gerente - 150k a 450k",
-    "hunter": "Izabela Mattano"
-  },
-  {
-    "rank": "79",
+    "rank": "80",
     "unidade": "V4 Company Romano & Associados",
     "provisionado": "72.184,82",
     "semana_1": "4.804,86",
@@ -2291,7 +2320,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "80",
+    "rank": "81",
     "unidade": "V4 Company Prates Hanzava & Co",
     "provisionado": "164.509,48",
     "semana_1": "5.357,16",
@@ -2320,7 +2349,7 @@
     "hunter": "Izabela Mattano"
   },
   {
-    "rank": "81",
+    "rank": "82",
     "unidade": "V4 Company Fron & Co.",
     "provisionado": "442.454,26",
     "semana_1": "26.535,65",
@@ -2347,35 +2376,6 @@
     "id_tenant": "6c20c789-142c-4111-b843-7f5abc588ef2",
     "horizonte": "H3 - Gerente - 150k a 450k",
     "hunter": "Deborah Reynaldo"
-  },
-  {
-    "rank": "82",
-    "unidade": "V4 Company SBF & Co",
-    "provisionado": "129.489,28",
-    "semana_1": "9.517,77",
-    "semana_2": "74.615,43",
-    "semana_3": "90.075,31",
-    "semana_4": "116.685,16",
-    "recebido": "2.904,88",
-    "semana_5": "129.489,28",
-    "semana_corte": "2",
-    "valor_faltante_meta": "71.710,55",
-    "realizado": "3,89%",
-    "disponivel_ano": "30.224,69",
-    "str_regional": "MG1",
-    "recebido_ate_sem1": "2.904,88",
-    "realizado_sem1": "30,52%",
-    "recebido_ate_sem2": "2.904,88",
-    "realizado_sem2": "3,89%",
-    "recebido_ate_sem3": "2.904,88",
-    "realizado_sem3": "3,22%",
-    "recebido_ate_sem4": "2.904,88",
-    "realizado_sem4": "2,49%",
-    "recebido_ate_sem5": "2.904,88",
-    "realizado_sem5": "2,24%",
-    "id_tenant": "e97ed0ef-cade-4ad0-a06b-872c3551070e",
-    "horizonte": "H2 - Coordenadora - 60k a 150k",
-    "hunter": "Bruno Ferreira"
   },
   {
     "rank": "83",
