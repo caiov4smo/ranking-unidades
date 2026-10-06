@@ -1190,6 +1190,35 @@
   },
   {
     "rank": "42",
+    "unidade": "V4 Company Kuri & Associados",
+    "provisionado": "1.051.378,06",
+    "semana_1": "110.432,74",
+    "semana_2": "372.032,8",
+    "semana_3": "645.853,57",
+    "semana_4": "772.764,69",
+    "recebido": "87.143,94",
+    "semana_5": "1.051.378,06",
+    "semana_corte": "2",
+    "valor_faltante_meta": "284.888,86",
+    "realizado": "23,42%",
+    "disponivel_ano": "437.258",
+    "str_regional": "PR",
+    "recebido_ate_sem1": "52.101,64",
+    "realizado_sem1": "47,18%",
+    "recebido_ate_sem2": "87.143,94",
+    "realizado_sem2": "23,42%",
+    "recebido_ate_sem3": "87.143,94",
+    "realizado_sem3": "13,49%",
+    "recebido_ate_sem4": "87.143,94",
+    "realizado_sem4": "11,28%",
+    "recebido_ate_sem5": "87.143,94",
+    "realizado_sem5": "8,29%",
+    "id_tenant": "ee1ff0c0-4d3e-4418-b443-78c4262f7d78",
+    "horizonte": "H5 - Diretor / Regional",
+    "hunter": "Gerson Xavier"
+  },
+  {
+    "rank": "43",
     "unidade": "V4 Company Cipulla & Associados",
     "provisionado": "171.707,88",
     "semana_1": "15.464,25",
@@ -1218,7 +1247,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "43",
+    "rank": "44",
     "unidade": "V4 Company Galdino & Co.",
     "provisionado": "86.124,4",
     "semana_1": "843,2",
@@ -1247,7 +1276,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "44",
+    "rank": "45",
     "unidade": "V4 Company Victor, Basilio, Amaral & Co",
     "provisionado": "304.424,13",
     "semana_1": "21.538,68",
@@ -1276,7 +1305,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "45",
+    "rank": "46",
     "unidade": "V4 Company Antunes Bueno & Co",
     "provisionado": "161.186,52",
     "semana_1": "2.436,04",
@@ -1305,7 +1334,7 @@
     "hunter": "Deborah Reynaldo"
   },
   {
-    "rank": "46",
+    "rank": "47",
     "unidade": "V4 Company Freitas Ramos & Associados",
     "provisionado": "233.085,62",
     "semana_1": "0",
@@ -1334,7 +1363,7 @@
     "hunter": "Eric de Paula"
   },
   {
-    "rank": "47",
+    "rank": "48",
     "unidade": "V4 Company SBF & Co",
     "provisionado": "120.111,89",
     "semana_1": "8.828,51",
@@ -1363,7 +1392,7 @@
     "hunter": "Bruno Ferreira"
   },
   {
-    "rank": "48",
+    "rank": "49",
     "unidade": "V4 Company Kloh Cerino & Associados",
     "provisionado": "878.349,29",
     "semana_1": "90.500,22",
@@ -1392,7 +1421,7 @@
     "hunter": "Gerson Xavier"
   },
   {
-    "rank": "49",
+    "rank": "50",
     "unidade": "V4 Company Nunes & Associados",
     "provisionado": "1.190.832,03",
     "semana_1": "117.228,71",
@@ -1417,35 +1446,6 @@
     "recebido_ate_sem5": "78.934,18",
     "realizado_sem5": "6,63%",
     "id_tenant": "065224cf-aa45-40a0-9c03-acf886b3c1da",
-    "horizonte": "H5 - Diretor / Regional",
-    "hunter": "Gerson Xavier"
-  },
-  {
-    "rank": "50",
-    "unidade": "V4 Company Kuri & Associados",
-    "provisionado": "1.051.378,06",
-    "semana_1": "110.432,74",
-    "semana_2": "372.032,8",
-    "semana_3": "645.853,57",
-    "semana_4": "772.764,69",
-    "recebido": "84.081,89",
-    "semana_5": "1.051.378,06",
-    "semana_corte": "2",
-    "valor_faltante_meta": "287.950,91",
-    "realizado": "22,6%",
-    "disponivel_ano": "437.258",
-    "str_regional": "PR",
-    "recebido_ate_sem1": "52.101,64",
-    "realizado_sem1": "47,18%",
-    "recebido_ate_sem2": "84.081,89",
-    "realizado_sem2": "22,6%",
-    "recebido_ate_sem3": "84.081,89",
-    "realizado_sem3": "13,02%",
-    "recebido_ate_sem4": "84.081,89",
-    "realizado_sem4": "10,88%",
-    "recebido_ate_sem5": "84.081,89",
-    "realizado_sem5": "8%",
-    "id_tenant": "ee1ff0c0-4d3e-4418-b443-78c4262f7d78",
     "horizonte": "H5 - Diretor / Regional",
     "hunter": "Gerson Xavier"
   },
