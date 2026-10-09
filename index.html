@@ -568,10 +568,13 @@
             return 'R$ ' + num.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
         }
 
-        // FORMATAR PORCENTAGEM COM SEMPRE 2 CASAS DECIMAIS (PARA A LISTA)
+        // FORMATAR PORCENTAGEM COM SEMPRE 2 CASAS DECIMAIS
         function formatPct(val) {
             if (val === undefined || val === null || val === '') return '0,00%';
             let num = parseBrFloat(val);
+            if (typeof val === 'number' && val <= 1 && val > 0) {
+                num = num * 100;
+            }
             return num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
         }
 
@@ -603,7 +606,6 @@
 
                 // 1. Meta Semana Acumulada
                 const metaSemanaAcum = parseBrFloat(item['semana_' + targetWeekNum] || '0');
-
                 item.metaSemanaStr = metaSemanaAcum.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 item.metaSemanaNum = metaSemanaAcum;
 
@@ -613,13 +615,17 @@
                 item.recebidoStr = recebidoVal;
                 item.recebidoNum = parseBrFloat(recebidoVal);
 
-                // 3. Realizado %
+                // 3. Realizado % (Ajustado para lidar com decimais 0-1)
                 const realizadoKey = 'realizado_sem' + targetWeekNum;
-                const realizadoVal = item[realizadoKey] !== undefined ? item[realizadoKey] : (item.realizado || '0%');
-                item.realizadoStr = realizadoVal;
-                item.realizadoNum = parseBrFloat(realizadoVal);
+                const realizadoVal = item[realizadoKey] !== undefined ? item[realizadoKey] : (item.realizado || 0);
+                let rNum = parseBrFloat(realizadoVal);
+                if (typeof realizadoVal === 'number' && realizadoVal <= 1 && realizadoVal > 0) {
+                    rNum = rNum * 100;
+                }
+                item.realizadoNum = rNum;
+                item.realizadoStr = rNum.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
 
-                // 4. Delta Semana (Faltante Meta da Semana): Max(0, MetaSemana - RecebidoAtéAquelePonto)
+                // 4. Delta Semana
                 let deltaNum = item.metaSemanaNum - item.recebidoNum;
                 if (deltaNum < 0) deltaNum = 0;
                 item.deltaSemanaNum = deltaNum;
@@ -656,7 +662,7 @@
             }
         }
 
-        // POPULAR FILTROS DE REGIONAIS E HORIZONTES (APENAS SIGLAS NO DROPDOWN)
+        // POPULAR FILTROS
         function populateFilters(data) {
             // Filtro de Regionais
             const regFilter = document.getElementById('regional-filter');
@@ -669,24 +675,20 @@
                 regFilter.appendChild(option);
             });
 
-            regFilter.addEventListener('change', () => {
-                applyFilterAndSort();
-            });
+            regFilter.addEventListener('change', () => applyFilterAndSort());
 
-            // Filtro de Horizontes (Popula apenas com Siglas únicas: H1, H2, H3, H4, H5)
+            // Filtro de Horizontes
             const horizFilter = document.getElementById('horizonte-filter');
             const horizontesSiglas = [...new Set(data.map(item => item.horizonteSigla).filter(h => h && h !== '-'))].sort();
 
             horizontesSiglas.forEach(sigla => {
                 const option = document.createElement('option');
                 option.value = sigla;
-                option.textContent = sigla; // Exibe apenas a sigla (ex: "H1", "H2")
+                option.textContent = sigla;
                 horizFilter.appendChild(option);
             });
 
-            horizFilter.addEventListener('change', () => {
-                applyFilterAndSort();
-            });
+            horizFilter.addEventListener('change', () => applyFilterAndSort());
 
             // Filtro de Hunters
             const hunterFilter = document.getElementById('hunter-filter');
@@ -699,9 +701,7 @@
                 hunterFilter.appendChild(option);
             });
 
-            hunterFilter.addEventListener('change', () => {
-                applyFilterAndSort();
-            });
+            hunterFilter.addEventListener('change', () => applyFilterAndSort());
         }
 
         // CONFIGURAR CLIQUE NOS CABEÇALHOS PARA ORDENAÇÃO
@@ -730,7 +730,6 @@
                 const unitName = tr.getAttribute('data-unit');
                 if (!unitName) return;
 
-                // Se clicou na unidade ja selecionada, deseleciona
                 if (selectedUnitName === unitName) {
                     selectedUnitName = null;
                 } else {
@@ -762,15 +761,12 @@
                 filtered = filtered.filter(item => item.hunter === selectedHunter);
             }
 
-            // Verificar se a unidade selecionada ainda esta nos dados filtrados
             if (selectedUnitName) {
                 const unitExists = filtered.some(item => item.unidade === selectedUnitName);
-                if (!unitExists) {
-                    selectedUnitName = null;
-                }
+                if (!unitExists) selectedUnitName = null;
             }
 
-            // Atualizar Titulo do Cabeçalho
+            // Atualizar Título do Cabeçalho
             if (selectedUnitName) {
                 mainTitleEl.textContent = `METAS ${selectedUnitName}`;
             } else if (selectedReg !== 'all') {
@@ -783,7 +779,7 @@
                 mainTitleEl.textContent = 'RANKING UNIDADES';
             }
 
-            // Renderizar secao dos copos para a unidade selecionada OU para o grupo filtrado
+            // Renderizar Copos
             if (selectedUnitName) {
                 const unitData = allData.filter(item => item.unidade === selectedUnitName);
                 renderGlasses(unitData);
@@ -807,7 +803,7 @@
                 return currentSortDir === 'asc' ? valA - valB : valB - valA;
             });
 
-            // Atualiza indicadores visuais dos cabeçalhos
+            // Indicadores visuais nos cabeçalhos
             document.querySelectorAll('th.sortable').forEach(th => {
                 const col = th.getAttribute('data-col');
                 const icon = th.querySelector('.sort-icon');
@@ -823,7 +819,7 @@
             renderTable(sorted);
         }
 
-        // RENDERIZAR OS COPOS COM TAMANHO PROPORCIONAL À META DA PRÓPRIA SEMANA (DESACUMULADA)
+        // RENDERIZAR OS COPOS
         function renderGlasses(data) {
             const container = document.getElementById('glasses-container');
             if (!container) return;
@@ -833,7 +829,6 @@
                 return;
             }
 
-            // Identificar qual semana de corte considerar para a exibicao
             let corteWeek = 3;
             if (data[0] && data[0].semana_corte) {
                 corteWeek = parseInt(data[0].semana_corte, 10) || 3;
@@ -842,7 +837,6 @@
                 corteWeek = Math.max(1, corteWeek - 1);
             }
 
-            // 1. Calcular Metas Individuais (Desacumuladas) e Recebidos Individuais por Semana (1 a 5)
             let weekMetasIndividuais = [0, 0, 0, 0, 0];
             let weekRecebidosIndividuais = [0, 0, 0, 0, 0];
 
@@ -851,13 +845,11 @@
                 let prevRecAcum = 0;
 
                 for (let w = 1; w <= 5; w++) {
-                    // Meta
                     const currMetaAcum = parseBrFloat(item['semana_' + w] || '0');
                     const metaPropria = Math.max(0, currMetaAcum - prevMetaAcum);
                     weekMetasIndividuais[w - 1] += metaPropria;
                     prevMetaAcum = currMetaAcum;
 
-                    // Recebido
                     if (w <= corteWeek) {
                         const recKey = 'recebido_ate_sem' + w;
                         const currRecAcum = item[recKey] !== undefined ? parseBrFloat(item[recKey]) : parseBrFloat(item.recebido);
@@ -868,10 +860,9 @@
                 }
             });
 
-            // Meta Máxima entre as semanas para servir de referência do tamanho do copo (capacidade)
             const maxWeekMetaIndiv = Math.max(...weekMetasIndividuais) || 1;
-            const maxGlassHeightPx = 135; // Altura máxima em pixels para a semana de maior meta
-            const minGlassHeightPx = 40;  // Altura mínima visual
+            const maxGlassHeightPx = 135;
+            const minGlassHeightPx = 40;
 
             let html = '';
 
@@ -879,53 +870,26 @@
                 const sumMetaIndiv = weekMetasIndividuais[w - 1];
                 let sumRecebidoIndiv = weekRecebidosIndividuais[w - 1];
 
-                // Tamanho proporcional da estrutura do copo baseado na Meta Individual da Semana
                 let glassOuterHeight = Math.round((sumMetaIndiv / maxWeekMetaIndiv) * maxGlassHeightPx);
                 if (glassOuterHeight < minGlassHeightPx && sumMetaIndiv > 0) {
                     glassOuterHeight = minGlassHeightPx;
                 }
 
                 let pct = sumMetaIndiv > 0 ? (sumRecebidoIndiv / sumMetaIndiv) * 100 : 0;
-                let fillHeight = Math.min(100, pct);
-
-                let borderStyle = '';
-                let fillColor = '';
-
-                if (w < corteWeek) {
-                    // Semanas passadas
-                    if (pct >= 100) {
-                        borderStyle = 'border: 2px solid #00E676;';
-                        fillColor = '#00E676';
-                    } else {
-                        borderStyle = 'border: 2px solid #E50914;';
-                        fillColor = '#E50914';
-                    }
-                } else if (w === corteWeek) {
-                    // Semana atual/ativa
-                    borderStyle = 'border: 2px dashed #FFD700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.35);';
-                    fillColor = pct >= 100 ? '#00E676' : '#E50914';
-                } else {
-                    // Semanas futuras
-                    borderStyle = 'border: 2px dashed #3a3a3a;';
-                    fillColor = 'transparent';
-                    fillHeight = 0;
-                    sumRecebidoIndiv = 0;
-                    pct = 0;
-                }
-
-                const formattedRecebido = formatCurrencyNoCents(sumRecebidoIndiv);
-                const formattedMeta = formatCurrencyNoCents(sumMetaIndiv);
-                const formattedPct = pct.toFixed(1).replace('.', ',') + '%';
+                let fillHeight = Math.min(100, Math.max(0, pct));
+                let isPastOrCurrent = w <= corteWeek;
+                let barColor = isPastOrCurrent ? 'var(--v4-red)' : '#333333';
+                let topRealizadoText = isPastOrCurrent ? formatCurrencyNoCents(sumRecebidoIndiv) : 'R$ 0';
 
                 html += `
                     <div class="glass-card">
-                        <div class="glass-top-realizado">${formattedRecebido}</div>
-                        <div class="glass-outer" style="height: ${glassOuterHeight}px; ${borderStyle}">
-                            <div class="glass-inner" style="height: ${fillHeight}%; background-color: ${fillColor};"></div>
-                            <div class="glass-pct-overlay">${formattedPct}</div>
+                        <div class="glass-top-realizado">${topRealizadoText}</div>
+                        <div class="glass-outer" style="height: ${glassOuterHeight}px;">
+                            <div class="glass-inner" style="height: ${fillHeight}%; background-color: ${barColor};"></div>
+                            <div class="glass-pct-overlay">${pct.toFixed(1).replace('.', ',')}%</div>
                         </div>
                         <div class="glass-week-title">Semana ${w}</div>
-                        <div class="glass-bottom-meta">${formattedMeta}</div>
+                        <div class="glass-bottom-meta">${formatCurrencyNoCents(sumMetaIndiv)}</div>
                     </div>
                 `;
             }
@@ -933,64 +897,67 @@
             container.innerHTML = html;
         }
 
-        // RENDERIZAR TABELA DA LISTA (SEMPRE COM 2 CASAS DECIMAIS)
+        // RENDERIZAR TABELA DE DADOS
         function renderTable(data) {
-            const tableBody = document.getElementById('table-body');
-            let html = '';
+            const tbody = document.getElementById('table-body');
+            if (!tbody) return;
 
             if (data.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="10" style="text-align:center;">Nenhuma unidade encontrada para os filtros selecionados.</td></tr>';
+                tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color:var(--text-muted);">Nenhum registro encontrado.</td></tr>`;
                 return;
             }
 
-            data.forEach((row, index) => {
-                const realRank = index + 1; // Posição atual na lista filtrada
-                const progressWidth = row.realizadoNum > 100 ? 100 : row.realizadoNum;
-                
-                // Estruturação do Rank com Badge de Destaque para o Top 3
-                let rankRowClass = '';
-                let rankDisplay = `${realRank}º`;
+            let html = '';
+            data.forEach((item, index) => {
+                const rankPosition = index + 1;
+                let rankClass = '';
+                let rankBadgeHtml = `${rankPosition}º`;
 
-                if (realRank === 1) {
-                    rankRowClass = 'top-rank-1';
-                    rankDisplay = `<span class="rank-badge">${realRank}º</span>`;
-                } else if (realRank === 2) {
-                    rankRowClass = 'top-rank-2';
-                    rankDisplay = `<span class="rank-badge">${realRank}º</span>`;
-                } else if (realRank === 3) {
-                    rankRowClass = 'top-rank-3';
-                    rankDisplay = `<span class="rank-badge">${realRank}º</span>`;
+                if (rankPosition === 1) {
+                    rankClass = 'top-rank-1';
+                    rankBadgeHtml = `<span class="rank-badge">1º</span>`;
+                } else if (rankPosition === 2) {
+                    rankClass = 'top-rank-2';
+                    rankBadgeHtml = `<span class="rank-badge">2º</span>`;
+                } else if (rankPosition === 3) {
+                    rankClass = 'top-rank-3';
+                    rankBadgeHtml = `<span class="rank-badge">3º</span>`;
                 }
 
-                // Classe de Seleção ao Clicar na Linha
-                const selectedClass = (row.unidade === selectedUnitName) ? 'selected-row' : '';
+                const isSelected = selectedUnitName && selectedUnitName === item.unidade;
+                if (isSelected) {
+                    rankClass += ' selected-row';
+                }
+
+                const pctVal = Math.min(100, Math.max(0, item.realizadoNum || 0));
 
                 html += `
-                    <tr class="${rankRowClass} ${selectedClass}" data-unit="${row.unidade}">
-                        <td class="rank-col">${rankDisplay}</td>
-                        <td class="unit-col" title="${row.unidade}">${row.unidade}</td>
-                        <td>${formatCurrency(row.provisionadoNum)}</td>
-                        <td>${formatCurrency(row.metaSemanaNum)}</td>
-                        <td>${formatCurrency(row.recebidoNum)}</td>
-                        <td>${formatCurrency(row.deltaSemanaNum)}</td>
+                    <tr class="${rankClass}" data-unit="${item.unidade}">
+                        <td class="rank-col">${rankBadgeHtml}</td>
+                        <td class="unit-col">${item.unidade}</td>
+                        <td>${formatCurrency(item.provisionadoNum)}</td>
+                        <td>R$ ${item.metaSemanaStr}</td>
+                        <td>${formatCurrency(item.recebidoNum)}</td>
+                        <td>R$ ${item.deltaSemanaStr}</td>
                         <td>
                             <div class="progress-cell">
-                                <span class="progress-text">${formatPct(row.realizadoNum)}</span>
+                                <span class="progress-text">${formatPct(item.realizadoNum)}</span>
                                 <div class="progress-bar-bg">
-                                    <div class="progress-bar-fill" style="width: ${progressWidth}%;"></div>
+                                    <div class="progress-bar-fill" style="width: ${pctVal}%;"></div>
                                 </div>
                             </div>
                         </td>
-                        <td>${formatCurrency(row.disponivelAnoNum)}</td>
-                        <td class="horizonte-col" title="${row.horizonteRaw}">${row.horizonteSigla}</td>
-                        <td class="regional-col">${row.str_regional || '-'}</td>
+                        <td>${formatCurrency(item.disponivelAnoNum)}</td>
+                        <td class="horizonte-col">${item.horizonteSigla}</td>
+                        <td class="regional-col">${item.str_regional || '-'}</td>
                     </tr>
                 `;
             });
 
-            tableBody.innerHTML = html;
+            tbody.innerHTML = html;
         }
 
+        // INICIALIZAR PÁGINA
         document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
